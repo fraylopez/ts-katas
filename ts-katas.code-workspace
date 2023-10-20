@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "✨ ts-katas",
+			"path": "."
+		},
+		{
+			"name": "📦 bank-kata",
+			"path": "packages/bank"
+		},
+		{
+			"name": "📦 gilded-rose-kata",
+			"path": "packages/gilded-rose"
+		}
+	],
+	"settings": {}
+}
