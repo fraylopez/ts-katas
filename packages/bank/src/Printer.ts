@@ -1,4 +1,3 @@
-export class Printer {
-  print(statement: string) {
-  }
+export interface Printer {
+  print(statement: string): void;
 }

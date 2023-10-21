@@ -1,10 +1,14 @@
 import assert from "assert";
 import { AccountService } from "../test/acceptance.test";
+import { ConsolePrinter } from "./ConsolePrinter";
+import { Printer } from "./Printer";
 
 export class Bank implements AccountService {
   private _balance: number;
+  private printer: Printer;
   constructor() {
     this._balance = 0;
+    this.printer = new ConsolePrinter();
   }
   get balance() {
     return this._balance;
@@ -17,6 +21,6 @@ export class Bank implements AccountService {
     this._balance -= amount;
   }
   printStatement(): void {
-    throw new Error("Method not implemented.");
+    this.printer.print("");
   }
 }

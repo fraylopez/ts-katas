@@ -1,9 +1,9 @@
 import { expect } from "chai";
-import { Printer } from "../src/Printer";
+import { ConsolePrinter } from "../src/ConsolePrinter";
 
-describe(`${Printer.name}`, () => {
+describe(`${ConsolePrinter.name}`, () => {
   it("should print a statement", () => {
-    const printer = new Printer();
+    const printer = new ConsolePrinter();
     expect(printer.print("")).to.not.throw;
   });
 });
