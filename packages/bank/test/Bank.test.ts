@@ -1,7 +1,8 @@
 import { expect } from "chai";
 import { Bank } from "../src/Bank";
+import { BankMother } from "./BankMother";
 
-describe("Bank", () => {
+describe(`${Bank.name}`, () => {
   it("should be able to deposit money", () => {
     const bank = BankMother.anEmptyBank();
     bank.deposit(1000);
@@ -26,26 +27,4 @@ describe("Bank", () => {
   });
 });
 
-describe("Printer", () => {
-  it("should print a statement", () => {
-    const printer = new Printer();
-    expect(printer.print("")).to.not.throw;
-  });
-});
 
-class Printer {
-  print(statement: string) {
-  }
-}
-
-class BankMother {
-  static anEmptyBank(): Bank {
-    return new Bank();
-  }
-
-  static aBankWithABalanceOf(balance: number): Bank {
-    const bank = new Bank();
-    bank.deposit(balance);
-    return bank;
-  }
-}
