@@ -1,5 +1,5 @@
 import assert from "assert";
-import { AccountService } from "../test/acceptance.test";
+import { AccountService } from "./AccountService";
 import { Printer } from "./Printer";
 
 export class Bank implements AccountService {

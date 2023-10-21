@@ -3,6 +3,7 @@ import { after, before } from "mocha";
 import sinon, { SinonSpy, spy } from "sinon";
 import { Bank } from "../src/Bank";
 import { BankMother } from "./BankMother";
+import { AccountService } from "../src/AccountService";
 
 describe('bank acceptance tests', () => {
   let bank: AccountService;
@@ -49,9 +50,4 @@ function calledWithArgs(bank: AccountService, args: string): boolean {
 }
 
 
-export interface AccountService {
-  deposit(amount: number): void;
-  withdraw(amount: number): void;
-  printStatement(): void;
-}
 

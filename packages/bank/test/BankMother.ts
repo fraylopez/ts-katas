@@ -1,6 +1,5 @@
 import { Bank } from "../src/Bank";
 import { PrinterMother } from "./PrinterMother";
-import { AccountService } from "./acceptance.test";
 
 export class BankMother {
   static anEmptyBank(): Bank {
