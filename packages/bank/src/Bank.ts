@@ -9,7 +9,7 @@ export class Bank implements AccountService {
     return this._balance;
   }
   deposit(amount: number): void {
-    throw new Error("Method not implemented.");
+    this._balance += amount;
   }
   withdraw(amount: number): void {
     throw new Error("Method not implemented.");
