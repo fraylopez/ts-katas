@@ -9,16 +9,16 @@ export class PrinterMother {
 }
 
 class MockPrinter implements Printer {
-  private readonly statements: string[] = [];
-  print(transactions: Transaction[]): void {
-    this.statements.push(...transactions.map(t => this.parseTransactions(t)));
+  private readonly _prints: string[] = [];
+  print(statement: string): void {
+    this._prints.push(statement);
   }
 
   private parseTransactions(transaction: Transaction): string {
     return `${transaction.date.toLocaleDateString()} | ${transaction.amount} `;
   }
 
-  get statement(): string[] {
-    return this.statements;
+  get prints(): string[] {
+    return this._prints;
   }
 }

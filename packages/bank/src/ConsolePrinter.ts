@@ -2,7 +2,7 @@ import { Printer } from "./Printer";
 import { Transaction } from "./Transaction";
 
 export class ConsolePrinter implements Printer {
-  print(transactions: Transaction[]): void {
+  print(statement: string): void {
     throw new Error("Not implemented");
   }
 }
