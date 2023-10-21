@@ -1,14 +1,13 @@
 import assert from "assert";
 import { AccountService } from "../test/acceptance.test";
-import { ConsolePrinter } from "./ConsolePrinter";
 import { Printer } from "./Printer";
 
 export class Bank implements AccountService {
   private _balance: number;
-  private printer: Printer;
-  constructor() {
+  constructor(
+    private readonly printer: Printer,
+  ) {
     this._balance = 0;
-    this.printer = new ConsolePrinter();
   }
   get balance() {
     return this._balance;

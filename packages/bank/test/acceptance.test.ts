@@ -2,11 +2,12 @@ import { expect } from "chai";
 import { after, before } from "mocha";
 import sinon, { SinonSpy, spy } from "sinon";
 import { Bank } from "../src/Bank";
+import { BankMother } from "./BankMother";
 
 describe('bank acceptance tests', () => {
   let bank: AccountService;
   before(() => {
-    bank = new Bank();
+    bank = BankMother.anEmptyBank();
   });
 
   describe('Given a client makes a deposit of 1000 on 10-01-2012', () => {
