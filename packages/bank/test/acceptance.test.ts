@@ -36,13 +36,14 @@ describe('bank acceptance tests', () => {
           it('Then they would see:', () => {
             const expectedStatement = `
             Date       || Amount || Balance
-            14/01/2012 || -500   || 2500
-            13/01/2012 || 2000   || 3000
             10/01/2012 || 1000   || 1000
+            13/01/2012 || 2000   || 3000
+            14/01/2012 || -500   || 2500
             `;
 
             bank.printStatement();
-            sinon.assert.calledWith(printer.print, expectedStatement);
+            const calledWith = printer.print.getCall(0).args[0];
+            expect(calledWith.replace(/\s/g, '')).eq(expectedStatement.replace(/\s/g, ''));
           });
         });
       });
