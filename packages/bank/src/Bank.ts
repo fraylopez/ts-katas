@@ -1,6 +1,7 @@
 import assert from "assert";
 import { AccountService } from "./AccountService";
 import { Printer } from "./Printer";
+import { Transaction } from "./Transaction";
 
 export class Bank implements AccountService {
   private _balance: number;
@@ -35,10 +36,4 @@ export class Bank implements AccountService {
   private recordTransaction(amount: number) {
     this._transactions.push({ amount, date: new Date() });
   }
-
-}
-
-interface Transaction {
-  amount: number;
-  date: Date;
 }
