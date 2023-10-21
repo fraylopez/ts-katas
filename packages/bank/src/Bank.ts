@@ -2,17 +2,17 @@ import assert from "assert";
 import { AccountService } from "./AccountService";
 import { Printer } from "./Printer";
 import { Transaction } from "./Transaction";
+import { Clock } from "./Clock";
 
 export class Bank implements AccountService {
   private _balance: number;
   private _transactions: Transaction[];
-  private readonly clock: Clock;
   constructor(
     private readonly printer: Printer,
+    private readonly clock: Clock,
   ) {
     this._balance = 0;
     this._transactions = [];
-    this.clock = new SystemClock();
   }
   get balance() {
     return this._balance;
@@ -48,15 +48,5 @@ export class Bank implements AccountService {
 
   private parseTransaction(transaction: Transaction): string {
     return `${transaction.date.toLocaleDateString()} || ${transaction.amount} || ${transaction.balance}`;
-  }
-}
-
-interface Clock {
-  now(): Date;
-}
-
-class SystemClock implements Clock {
-  now(): Date {
-    return new Date();
   }
 }
