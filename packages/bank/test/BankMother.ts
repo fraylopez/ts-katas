@@ -6,7 +6,10 @@ import { PrinterMother } from "./PrinterMother";
 
 export class BankMother {
   static anEmptyBank(printer?: Printer, clock?: Clock): Bank {
-    return new Bank(printer || PrinterMother.aPrinter(), clock || ClockMother.aClockAt(new Date()));
+    return new Bank(
+      printer || PrinterMother.aPrinter(),
+      clock || ClockMother.aClockAt(new Date())
+    );
   }
 
   static aBankWithABalanceOf(balance: number, printer?: Printer): Bank {
@@ -14,4 +17,5 @@ export class BankMother {
     bank.deposit(balance);
     return bank;
   }
+
 }
