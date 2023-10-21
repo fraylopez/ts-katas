@@ -14,12 +14,15 @@
     "@types/chai": "^4.3.9",
     "@types/mocha": "^10.0.3",
     "@types/node": "^20.8.7",
+    "@types/sinon": "^10.0.20",
     "chai": "^4.3.10",
     "mocha": "^10.2.0",
+    "sinon": "^17.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "private": true
 }
