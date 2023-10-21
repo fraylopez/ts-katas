@@ -1,3 +1,4 @@
+import assert from "assert";
 import { AccountService } from "../test/acceptance.test";
 
 export class Bank implements AccountService {
@@ -12,6 +13,7 @@ export class Bank implements AccountService {
     this._balance += amount;
   }
   withdraw(amount: number): void {
+    assert(this._balance >= amount, "Insufficient funds");
     this._balance -= amount;
   }
   printStatement(): void {
