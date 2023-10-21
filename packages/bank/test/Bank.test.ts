@@ -3,6 +3,7 @@ import { Bank } from "../src/Bank";
 import { BankMother } from "./BankMother";
 import sinon from "sinon";
 import { ConsolePrinter } from "../src/ConsolePrinter";
+import moment from "moment";
 
 describe(`${Bank.name}`, () => {
   let sandbox: sinon.SinonSandbox;
@@ -49,9 +50,9 @@ describe(`${Bank.name}`, () => {
     bank.printStatement();
     const expectedStatement = `
     Date || Amount || Balance
-    ${new Date().toLocaleDateString()} || 1000 || 1000
+    ${moment().format("DD/MM/YYYY")} || 1000 || 1000
     `;
     const calledWith = stubPrinter.print.getCall(0).args[0];
     expect(calledWith.replace(/\s/g, '')).eq(expectedStatement.replace(/\s/g, ''));
   });
-});
+});;

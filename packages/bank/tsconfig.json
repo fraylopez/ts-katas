@@ -33,5 +33,6 @@
   "include": [
     "src/",
     "test/",
-  ]
+  ],
+  "private": true,
 }
