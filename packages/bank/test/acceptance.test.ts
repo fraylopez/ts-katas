@@ -1,6 +1,7 @@
 import { expect } from "chai";
 import { after, before } from "mocha";
 import sinon, { SinonSpy, spy } from "sinon";
+import { Bank } from "../src/Bank";
 
 describe('bank acceptance tests', () => {
   let bank: AccountService;
@@ -47,20 +48,9 @@ function calledWithArgs(bank: AccountService, args: string): boolean {
 }
 
 
-interface AccountService {
+export interface AccountService {
   deposit(amount: number): void;
   withdraw(amount: number): void;
   printStatement(): void;
 }
 
-class Bank implements AccountService {
-  deposit(amount: number): void {
-    throw new Error("Method not implemented.");
-  }
-  withdraw(amount: number): void {
-    throw new Error("Method not implemented.");
-  }
-  printStatement(): void {
-    throw new Error("Method not implemented.");
-  }
-}
