@@ -1,7 +1,6 @@
 import { expect } from "chai";
 import { ConsolePrinter } from "../src/ConsolePrinter";
 import sinon from "sinon";
-import { after } from "mocha";
 
 describe(`${ConsolePrinter.name}`, () => {
   let sandbox: sinon.SinonSandbox;
