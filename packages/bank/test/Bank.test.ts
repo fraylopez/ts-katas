@@ -26,5 +26,3 @@ describe(`${Bank.name}`, () => {
     expect(bank.printStatement()).to.not.throw;
   });
 });
-
-
