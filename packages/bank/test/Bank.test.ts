@@ -25,4 +25,11 @@ describe(`${Bank.name}`, () => {
     const bank = BankMother.aBankWithABalanceOf(1000);
     expect(bank.printStatement()).to.not.throw;
   });
+
+  it("should store the transactions", () => {
+    const bank = BankMother.anEmptyBank();
+    bank.deposit(1000);
+    bank.withdraw(500);
+    expect(bank.transactions).length(2);
+  });
 });
