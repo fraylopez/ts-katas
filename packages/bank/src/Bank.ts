@@ -6,11 +6,13 @@ import { Transaction } from "./Transaction";
 export class Bank implements AccountService {
   private _balance: number;
   private _transactions: Transaction[];
+  private readonly clock: Clock;
   constructor(
     private readonly printer: Printer,
   ) {
     this._balance = 0;
     this._transactions = [];
+    this.clock = new SystemClock();
   }
   get balance() {
     return this._balance;
@@ -37,7 +39,7 @@ export class Bank implements AccountService {
   }
 
   private recordTransaction(amount: number) {
-    this._transactions.push({ amount, date: new Date(), balance: this._balance });
+    this._transactions.push({ amount, date: this.clock.now(), balance: this._balance });
   }
 
   private parseTransactions(): string {
@@ -46,5 +48,15 @@ export class Bank implements AccountService {
 
   private parseTransaction(transaction: Transaction): string {
     return `${transaction.date.toLocaleDateString()} || ${transaction.amount} || ${transaction.balance}`;
+  }
+}
+
+interface Clock {
+  now(): Date;
+}
+
+class SystemClock implements Clock {
+  now(): Date {
+    return new Date();
   }
 }
