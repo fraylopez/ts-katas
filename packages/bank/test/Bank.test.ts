@@ -26,6 +26,18 @@ describe("Bank", () => {
   });
 });
 
+describe("Printer", () => {
+  it("should print a statement", () => {
+    const printer = new Printer();
+    expect(printer.print("")).to.not.throw;
+  });
+});
+
+class Printer {
+  print(statement: string) {
+  }
+}
+
 class BankMother {
   static anEmptyBank(): Bank {
     return new Bank();
