@@ -1,4 +1,5 @@
 import { Printer } from "../src/Printer";
+import { Transaction } from "../src/Transaction";
 
 
 export class PrinterMother {
@@ -9,8 +10,12 @@ export class PrinterMother {
 
 class MockPrinter implements Printer {
   private readonly statements: string[] = [];
-  print(statement: string): void {
-    this.statements.push(statement);
+  print(transactions: Transaction[]): void {
+    this.statements.push(...transactions.map(t => this.parseTransactions(t)));
+  }
+
+  private parseTransactions(transaction: Transaction): string {
+    return `${transaction.date.toLocaleDateString()} | ${transaction.amount} `;
   }
 
   get statement(): string[] {
