@@ -30,7 +30,10 @@ export class Bank implements AccountService {
     this.recordTransaction(-amount);
   }
   printStatement(): void {
-    this.printer.print(this.parseTransactions());
+    const header = "Date || Amount || Balance";
+    const body = this.parseTransactions();
+    const statement = `${header}\n${body}`;
+    this.printer.print(statement);
   }
 
   private recordTransaction(amount: number) {
@@ -42,6 +45,6 @@ export class Bank implements AccountService {
   }
 
   private parseTransaction(transaction: Transaction): string {
-    return `${transaction.date.toLocaleDateString()} | ${transaction.amount} | ${transaction.balance}`;
+    return `${transaction.date.toLocaleDateString()} || ${transaction.amount} || ${transaction.balance}`;
   }
 }

@@ -1,14 +1,20 @@
 import { expect } from "chai";
 import { after, before } from "mocha";
-import sinon, { SinonSpy, spy } from "sinon";
+import sinon, { SinonSpy, SinonStubbedInstance, spy } from "sinon";
 import { Bank } from "../src/Bank";
 import { BankMother } from "./BankMother";
 import { AccountService } from "../src/AccountService";
+import { Printer } from "../src/Printer";
+import { ConsolePrinter } from "../src/ConsolePrinter";
 
 describe('bank acceptance tests', () => {
   let bank: AccountService;
+  let printer: SinonStubbedInstance<Printer>;
+  let sandbox: sinon.SinonSandbox;
   before(() => {
-    bank = BankMother.anEmptyBank();
+    sandbox = sinon.createSandbox();
+    printer = sandbox.createStubInstance<Printer>(ConsolePrinter);
+    bank = BankMother.anEmptyBank(printer);
   });
 
   describe('Given a client makes a deposit of 1000 on 10-01-2012', () => {
@@ -36,18 +42,10 @@ describe('bank acceptance tests', () => {
             `;
 
             bank.printStatement();
-            const calledWith = calledWithArgs(bank, expectedStatement);
-            expect(calledWith).equal(true);
+            sinon.assert.calledWith(printer.print, expectedStatement);
           });
         });
       });
     });
   });
 });
-
-function calledWithArgs(bank: AccountService, args: string): boolean {
-  return false;
-}
-
-
-

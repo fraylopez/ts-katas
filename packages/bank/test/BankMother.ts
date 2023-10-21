@@ -12,5 +12,4 @@ export class BankMother {
     bank.deposit(balance);
     return bank;
   }
-
-
+}
