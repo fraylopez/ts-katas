@@ -19,6 +19,11 @@ describe("Bank", () => {
     const bank = BankMother.aBankWithABalanceOf(1000);
     expect(() => bank.withdraw(5000)).throw("Insufficient funds");
   });
+
+  it("should be able to print a statement", () => {
+    const bank = BankMother.aBankWithABalanceOf(1000);
+    expect(bank.printStatement()).to.not.throw;
+  });
 });
 
 class BankMother {
