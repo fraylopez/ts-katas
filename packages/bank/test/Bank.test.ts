@@ -15,7 +15,6 @@ describe(`${Bank.name}`, () => {
     expect(bank.balance).eq(500);
   });
 
-
   it("should not be able to withdraw more than the balance", () => {
     const bank = BankMother.aBankWithABalanceOf(1000);
     expect(() => bank.withdraw(5000)).throw("Insufficient funds");
