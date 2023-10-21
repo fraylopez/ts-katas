@@ -1,15 +1,37 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es5",
-    "strict": false,
-    "noImplicitAny": false,
+    "target": "es2020",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": false,
+    "strict": true,
+    "strictNullChecks": true,
+    "preserveConstEnums": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "sourceMap": false,
-    "resolveJsonModule": true,
+    "declaration": true,
+    "moduleResolution": "node",
     "esModuleInterop": true,
-    "skipLibCheck": true,
+    "stripInternal": true,
+    "outDir": "dist",
+    "allowJs": true,
+    "noImplicitAny": false,
+    "noImplicitOverride": true,
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "useUnknownInCatchVariables": false,
   },
   "exclude": [
     "node_modules"
-  ],
+  ]
+  // "include": [
+  // "packages/*/src/**/*.ts",
+  // "packages/*/test/**/*.ts",
+  // ]
 }
