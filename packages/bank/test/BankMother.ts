@@ -1,6 +1,5 @@
 import { Bank } from "../src/Bank";
-import { ConsolePrinter } from "../src/ConsolePrinter";
-import { Printer } from "../src/Printer";
+import { PrinterMother } from "./PrinterMother";
 
 export class BankMother {
   static anEmptyBank(): Bank {
@@ -14,8 +13,3 @@ export class BankMother {
   }
 }
 
-export class PrinterMother {
-  static aPrinter(): Printer {
-    return new ConsolePrinter();
-  }
-}
