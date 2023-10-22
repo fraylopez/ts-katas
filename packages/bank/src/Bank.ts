@@ -7,13 +7,13 @@ import { TimeUtils } from "./TimeUtils";
 
 export class Bank implements AccountService {
   private _balance: number;
-  private _transactions: Transaction[];
+  private readonly transactionRepository: TransactionRepository;
   constructor(
     private readonly printer: Printer,
     private readonly clock: Clock,
   ) {
     this._balance = 0;
-    this._transactions = [];
+    this.transactionRepository = new InMemoryTransactionRepository();
   }
 
   deposit(amount: number): void {
@@ -26,11 +26,11 @@ export class Bank implements AccountService {
     this.recordTransaction(-amount);
   }
   printStatement(): void {
-    this.printer.print(TransactionParser.parse(this._transactions));
+    this.printer.print(TransactionParser.parse(this.transactionRepository.getTransactions()));
   }
 
   private recordTransaction(amount: number) {
-    this._transactions.unshift({ amount, date: this.clock.now(), balance: this._balance });
+    this.transactionRepository.recordTransaction({ amount, date: this.clock.now(), balance: this._balance });
   }
 }
 
@@ -41,5 +41,23 @@ class TransactionParser {
       `${TimeUtils.toFormat(transaction.date, "DD/MM/YYYY")} || ${transaction.amount} || ${transaction.balance}`)
       .join("\n");
     return header + "\n" + body;
+  }
+}
+
+interface TransactionRepository {
+  recordTransaction(transaction: Transaction): void;
+  getTransactions(): Transaction[];
+}
+
+class InMemoryTransactionRepository implements TransactionRepository {
+  private _transactions: Transaction[];
+  constructor() {
+    this._transactions = [];
+  }
+  recordTransaction(transaction: Transaction): void {
+    this._transactions.unshift(transaction);
+  }
+  getTransactions(): Transaction[] {
+    return this._transactions;
   }
 }
