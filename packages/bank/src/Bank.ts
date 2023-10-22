@@ -4,16 +4,17 @@ import { Printer } from "./Printer";
 import { Transaction } from "./Transaction";
 import { Clock } from "./Clock";
 import { TimeUtils } from "./TimeUtils";
+import { InMemoryTransactionRepository } from "./InMemoryTransactionRepository";
+import { TransactionRepository } from "./TransactionRepository";
 
 export class Bank implements AccountService {
   private _balance: number;
-  private readonly transactionRepository: TransactionRepository;
   constructor(
     private readonly printer: Printer,
     private readonly clock: Clock,
+    private readonly transactionRepository: TransactionRepository,
   ) {
     this._balance = 0;
-    this.transactionRepository = new InMemoryTransactionRepository();
   }
 
   deposit(amount: number): void {
@@ -41,23 +42,5 @@ class TransactionParser {
       `${TimeUtils.toFormat(transaction.date, "DD/MM/YYYY")} || ${transaction.amount} || ${transaction.balance}`)
       .join("\n");
     return header + "\n" + body;
-  }
-}
-
-interface TransactionRepository {
-  recordTransaction(transaction: Transaction): void;
-  getTransactions(): Transaction[];
-}
-
-class InMemoryTransactionRepository implements TransactionRepository {
-  private _transactions: Transaction[];
-  constructor() {
-    this._transactions = [];
-  }
-  recordTransaction(transaction: Transaction): void {
-    this._transactions.unshift(transaction);
-  }
-  getTransactions(): Transaction[] {
-    return this._transactions;
   }
 }
