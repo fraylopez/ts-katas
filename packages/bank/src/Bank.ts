@@ -30,7 +30,7 @@ export class Bank implements AccountService {
   }
 
   private recordTransaction(amount: number) {
-    this._transactions.push({ amount, date: this.clock.now(), balance: this._balance });
+    this._transactions.unshift({ amount, date: this.clock.now(), balance: this._balance });
   }
 }
 
