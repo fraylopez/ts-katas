@@ -11,6 +11,10 @@
 		{
 			"name": "📦 gilded-rose-kata",
 			"path": "packages/gilded-rose"
+		},
+		{
+			"name": "📦 smart-fridge-kata",
+			"path": "packages/smart-fridge"
 		}
 	],
 	"settings": {}
