@@ -3,7 +3,7 @@ import { AccountService } from "./AccountService";
 import { Printer } from "./Printer";
 import { Transaction } from "./Transaction";
 import { Clock } from "./Clock";
-import moment from "moment";
+import { TimeUtils } from "./TimeUtils";
 
 export class Bank implements AccountService {
   private _balance: number;
@@ -48,7 +48,6 @@ export class Bank implements AccountService {
   }
 
   private parseTransaction(transaction: Transaction): string {
-    const date = moment(transaction.date).format("DD/MM/YYYY");
-    return `${date} || ${transaction.amount} || ${transaction.balance}`;
+    return `${TimeUtils.toFormat(transaction.date, "DD/MM/YYYY")} || ${transaction.amount} || ${transaction.balance}`;
   }
 }
