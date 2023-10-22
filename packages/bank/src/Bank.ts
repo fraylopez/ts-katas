@@ -15,13 +15,6 @@ export class Bank implements AccountService {
     this._balance = 0;
     this._transactions = [];
   }
-  get balance() {
-    return this._balance;
-  }
-
-  get transactions() {
-    return this._transactions;
-  }
 
   deposit(amount: number): void {
     this._balance += amount;
