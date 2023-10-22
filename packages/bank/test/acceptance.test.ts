@@ -18,7 +18,7 @@ describe('bank acceptance tests', () => {
     sandbox = sinon.createSandbox();
     printer = sandbox.createStubInstance<Printer>(ConsolePrinter);
     clock = sandbox.createStubInstance<Clock>(SystemClock);
-    bank = BankMother.anEmptyBank(printer, clock);
+    bank = BankMother.anEmptyBank({ printer, clock });
   });
 
   describe('Given a client makes a deposit of 1000 on 10-01-2012', () => {

@@ -36,7 +36,7 @@ describe(`${Bank.name}`, () => {
 
   it("should print a statement with the transactions", () => {
     const stubPrinter = sandbox.createStubInstance(ConsolePrinter);
-    const bank = BankMother.anEmptyBank(stubPrinter);
+    const bank = BankMother.anEmptyBank({ printer: stubPrinter });
     bank.deposit(1000);
     bank.printStatement();
     const expectedStatement = `

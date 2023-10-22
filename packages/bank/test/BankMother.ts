@@ -1,3 +1,4 @@
+import { clock } from "sinon";
 import { AccountService } from "../src/AccountService";
 import { Bank } from "../src/Bank";
 import { Clock } from "../src/Clock";
@@ -8,17 +9,17 @@ import { ClockMother } from "./ClockMother";
 import { PrinterMother } from "./PrinterMother";
 
 export class BankMother {
-  static anEmptyBank(printer?: Printer, clock?: Clock, transactionRepo?: TransactionRepository): AccountService {
+  static anEmptyBank(dependencies?: { printer?: Printer, clock?: Clock, transactionRepo?: TransactionRepository; }): AccountService {
     return new Bank(
-      printer || PrinterMother.aPrinter(),
-      clock || ClockMother.aClockAt(new Date()),
-      transactionRepo || new InMemoryTransactionRepository()
+      dependencies?.printer || PrinterMother.aPrinter(),
+      dependencies?.clock || ClockMother.aClockAt(new Date()),
+      dependencies?.transactionRepo || new InMemoryTransactionRepository()
 
     );
   }
 
   static aBankWithABalanceOf(balance: number, printer?: Printer): AccountService {
-    const bank = this.anEmptyBank(printer);
+    const bank = this.anEmptyBank({ printer });
     bank.deposit(balance);
     return bank;
   }
