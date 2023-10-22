@@ -14,12 +14,18 @@ export class BankMother {
       dependencies?.printer || PrinterMother.aPrinter(),
       dependencies?.clock || ClockMother.aClockAt(new Date()),
       dependencies?.transactionRepo || new InMemoryTransactionRepository()
-
     );
   }
 
-  static aBankWithABalanceOf(balance: number, printer?: Printer): AccountService {
-    const bank = this.anEmptyBank({ printer });
+  static aBankWithABalanceOf(
+    balance: number,
+    dependencies?: {
+      printer?: Printer,
+      clock?: Clock,
+      transactionRepo?: TransactionRepository;
+    }
+  ): AccountService {
+    const bank = this.anEmptyBank(dependencies);
     bank.deposit(balance);
     return bank;
   }

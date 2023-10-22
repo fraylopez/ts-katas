@@ -1,7 +1,6 @@
 import { expect } from "chai";
 import { after, before } from "mocha";
-import sinon, { SinonSpy, SinonStubbedInstance, spy } from "sinon";
-import { Bank } from "../src/Bank";
+import sinon, { SinonStubbedInstance } from "sinon";
 import { BankMother } from "./BankMother";
 import { AccountService } from "../src/AccountService";
 import { Printer } from "../src/Printer";
