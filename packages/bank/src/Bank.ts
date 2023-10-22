@@ -33,21 +33,20 @@ export class Bank implements AccountService {
     this.recordTransaction(-amount);
   }
   printStatement(): void {
-    const header = "Date || Amount || Balance";
-    const body = this.parseTransactions();
-    const statement = `${header}\n${body}`;
-    this.printer.print(statement);
+    this.printer.print(TransactionParser.parse(this._transactions));
   }
 
   private recordTransaction(amount: number) {
     this._transactions.push({ amount, date: this.clock.now(), balance: this._balance });
   }
+}
 
-  private parseTransactions(): string {
-    return this._transactions.map(t => this.parseTransaction(t)).join("\n");
-  }
-
-  private parseTransaction(transaction: Transaction): string {
-    return `${TimeUtils.toFormat(transaction.date, "DD/MM/YYYY")} || ${transaction.amount} || ${transaction.balance}`;
+class TransactionParser {
+  static parse(transactions: Transaction[]): string {
+    const header = `Date || Amount || Balance`;
+    const body = transactions.map(transaction =>
+      `${TimeUtils.toFormat(transaction.date, "DD/MM/YYYY")} || ${transaction.amount} || ${transaction.balance}`)
+      .join("\n");
+    return header + "\n" + body;
   }
 }
