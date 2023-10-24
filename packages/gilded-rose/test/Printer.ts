@@ -9,6 +9,6 @@ export class Printer {
   }
 
   getStatement(): string {
-    return `\n${this.statements.join("\n")}\n`;
+    return this.statements.join("\n").replace(/\s/g, '');
   }
 }

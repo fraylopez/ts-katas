@@ -3,6 +3,7 @@ import { GildedRose, Item } from "../../app/gilded-rose";
 import { output } from "./output";
 import { Printer } from "../Printer";
 import { GoldenMasterTextTest } from '../GoldenMasterTextTest';
+import { it } from "mocha";
 
 describe('Gilded Rose', () => {
   it('should foo', () => {
@@ -36,10 +37,9 @@ describe('Gilded Rose', () => {
     Backstage passes to a TAFKAL80ETC concert 9 50
     Backstage passes to a TAFKAL80ETC concert 4 50
     Conjured Mana Cake 2 5
-    `;
+    `.replace(/\s/g, '');
 
-    expect(currentOutput.replace(/\s/g, ''))
-      .to.equal(output.replace(/\s/g, ''));
+    expect(currentOutput).to.equal(output);
   });
 
   it('sfgdfgdfdfd', () => {
@@ -48,8 +48,7 @@ describe('Gilded Rose', () => {
     textTest.run(printer);
 
     const currentOutput = printer.getStatement();
-    expect(currentOutput.replace(/\s/g, ''))
-      .to.equal(output.replace(/\s/g, ''));
+    expect(currentOutput).to.equal(output);
   });
 });
 
