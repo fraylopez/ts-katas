@@ -57,6 +57,13 @@ describe(`${Item.name}`, () => {
     expect(item.timeToExpire(new Date(2020, 1, 1))).to.be.equal(3);
   });
 
-
+  it('items should degrade a full day if degraded 5 times if open', () => {
+    const item = Item.fromDate("apple", new Date(2020, 1, 6));
+    item.setOpened();
+    for (let i = 0; i < 5; i++) {
+      item.degrade();
+    }
+    expect(item.timeToExpire(new Date(2020, 1, 1))).to.be.equal(3);
+  });
 
 });

@@ -22,11 +22,13 @@ export class Fridge {
 
 
 export class Item {
-
+  private opened: boolean;
   constructor(
     readonly name: string,
-    private expiration: Date
-  ) { }
+    private expiration: Date,
+  ) {
+    this.opened = false;
+  }
 
   static fromDate(name: string, date: Date): Item {
     return new Item(name, date);
@@ -39,7 +41,17 @@ export class Item {
   }
 
   degrade() {
-    const oneHourLess = this.expiration.getTime() - (1000 * 60 * 60);
-    this.expiration = new Date(oneHourLess);
+    const newExpirationDate = this.expiration.getTime() -
+      this.getDegradationInHours() * 1000 * 60 * 60;
+    this.expiration = new Date(newExpirationDate);
   }
+
+  setOpened() {
+    this.opened = true;
+  }
+
+  private getDegradationInHours(): number {
+    return this.opened ? 5 : 1;
+  }
+
 }
