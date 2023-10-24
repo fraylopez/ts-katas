@@ -43,6 +43,11 @@ describe(`${Item.name}`, () => {
     expect(item.timeToExpire(new Date(2020, 1, 1))).to.be.equal(5);
   });
 
+  it('items should degrade on open if sealed', () => {
+    const item = Item.fromDate("apple", new Date(2020, 1, 6));
+    item.degrade();
+    expect(item.timeToExpire(new Date(2020, 1, 1))).to.be.equal(4);
+  });
 
 
 });

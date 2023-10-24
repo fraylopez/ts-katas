@@ -22,9 +22,10 @@ export class Fridge {
 
 
 export class Item {
+
   constructor(
     readonly name: string,
-    readonly expiration : Date
+    readonly expiration: Date
   ) { }
 
   static fromDate(name: string, date: Date): Item {
@@ -35,5 +36,9 @@ export class Item {
     const diff = this.expiration.getTime() - now.getTime();
     const days = diff / (1000 * 60 * 60 * 24);
     return Math.floor(days);
+  }
+
+  degrade() {
+    this.expiration.setDate(this.expiration.getDate() - 1);
   }
 }
