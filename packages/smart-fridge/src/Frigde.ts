@@ -18,13 +18,13 @@ export class Item {
   ) { }
 }
 
-export class ItemMother{
+export class ItemMother {
 
-  public static apple() : Item{
-    return new Item('apple', 5);
+  public static apple(lifespan: number = 5): Item {
+    return new Item('apple', lifespan);
   }
 
-  public static orange() : Item{
-    return new Item('orange', 5);
+  public static orange(lifespan: number = 5): Item {
+    return new Item('orange', lifespan);
   }
 }
