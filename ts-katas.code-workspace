@@ -5,8 +5,20 @@
 			"path": "."
 		},
 		{
+			"name": "📦 bank-kata",
+			"path": "packages/bank"
+		},
+		{
 			"name": "📦 gilded-rose-kata",
 			"path": "packages/gilded-rose"
+		},
+		{
+			"name": "📦 smart-fridge-kata",
+			"path": "packages/smart-fridge"
+		},
+		{
+			"name": "📦 tennis-kata",
+			"path": "packages/tennis"
 		}
 	],
 	"settings": {}
