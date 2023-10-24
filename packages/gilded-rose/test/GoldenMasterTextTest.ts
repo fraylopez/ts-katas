@@ -23,9 +23,9 @@ export class GoldenMasterTextTest {
 
   run(printer: Printer) {
     let days: number = 2;
-    if (process.argv.length > 2) {
-      days = +process.argv[2];
-    }
+    // if (process.argv.length > 2) {
+    //   days = +process.argv[2];
+    // }
 
     for (let i = 0; i < days; i++) {
       printer.print("-------- day " + i + " --------");

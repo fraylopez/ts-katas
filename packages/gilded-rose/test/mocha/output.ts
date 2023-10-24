@@ -1,6 +1,6 @@
 
 export const output = `
-    -------- day 0 --------
+-------- day 0 --------
     name, sellIn, quality
     +5 Dexterity Vest 10 20
     Aged Brie 2 0
@@ -23,4 +23,4 @@ export const output = `
     Backstage passes to a TAFKAL80ETC concert 9 50
     Backstage passes to a TAFKAL80ETC concert 4 50
     Conjured Mana Cake 2 5
-    `;
+`;

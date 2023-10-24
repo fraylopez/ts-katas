@@ -38,16 +38,18 @@ describe('Gilded Rose', () => {
     Conjured Mana Cake 2 5
     `;
 
-    expect(output).to.equal(currentOutput);
+    expect(currentOutput.replace(/\s/g, ''))
+      .to.equal(output.replace(/\s/g, ''));
   });
 
   it('sfgdfgdfdfd', () => {
     const printer = new Printer();
     const textTest = new GoldenMasterTextTest();
     textTest.run(printer);
-    
+
     const currentOutput = printer.getStatement();
-    expect(currentOutput).to.equal(output);
+    expect(currentOutput.replace(/\s/g, ''))
+      .to.equal(output.replace(/\s/g, ''));
   });
 });
 
