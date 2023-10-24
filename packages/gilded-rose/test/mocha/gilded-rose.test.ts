@@ -43,11 +43,9 @@ describe('Gilded Rose', () => {
 
   it('sfgdfgdfdfd', () => {
     const printer = new Printer();
-    printer.print("");
     runExample(printer);
-    printer.print("");
 
-    const currentOutput = printer.statements.join('\n');
+    const currentOutput = printer.getStatement();
     expect(currentOutput).to.equal(output);
   });
 });
