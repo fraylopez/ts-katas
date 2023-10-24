@@ -1,7 +1,10 @@
 import { expect } from "chai";
+import { Fridge } from "../src/Frigde";
 
 describe('dummy test', () => {
-  it('should fail', () => {
-    expect(true).to.be.false;
+  it('Fridge must hold items', () => {
+    const fridge = new Fridge();
+    expect(fridge.count).equal(0);
   });
 });
+

@@ -31,8 +31,8 @@
     "node_modules"
   ],
   "include": [
-    "src/",
-    "test/",
+    "src/**/*.ts",
+    "test/**/*.ts",
   ],
   "private": true,
 }
