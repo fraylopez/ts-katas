@@ -8,8 +8,8 @@ export class Fridge {
       .map(i =>
         `${i.name}: ${this.getTimeToExpire(i)} day(s) remaining`).join('\n');
   }
-  add(item: Item, now?: Date) {
-    this.items.set(item, now || new Date());
+  add(item: Item, now: Date) {
+    this.items.set(item, now);
     this.count++;
   }
 
