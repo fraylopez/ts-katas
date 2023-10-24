@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { GildedRose, Item } from "../../app/gilded-rose";
-import { output, output } from "./output";
+import { output } from "./output";
 import { Printer } from "../Printer";
 import { runExample } from "../golden-master-text-test";
 
