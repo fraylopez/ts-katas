@@ -9,6 +9,7 @@ export class Fridge {
         `${i.name}: ${this.getTimeToExpire(i)} day(s) remaining`).join('\n');
   }
   add(item: Item, now: Date) {
+    this.open();
     this.items.set(item, now);
     this.count++;
   }
@@ -17,6 +18,12 @@ export class Fridge {
     const now = this.items.get(item);
     assert(now, "Item not found");
     return item.timeToExpire(now);
+  }
+
+  private open() {
+    this.items.forEach((_, item) => {
+      item.degrade();
+    });
   }
 }
 

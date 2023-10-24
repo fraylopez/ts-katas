@@ -35,6 +35,13 @@ describe(`${Fridge.name}`, () => {
     fridge.add(apple, Now);
     expect(fridge.print()).to.be.equal("apple: 5 day(s) remaining");
   });
+
+  it('should print apple with less lifespan when door is opened', () => {
+    const fridge = new Fridge();
+    fridge.add(ItemMother.apple(), Now);
+    fridge.add(ItemMother.apple(), Now);
+    expect(fridge.print()).to.contain("apple: 4 day(s) remaining");
+  });
 });
 
 describe(`${Item.name}`, () => {
