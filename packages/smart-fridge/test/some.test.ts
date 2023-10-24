@@ -18,4 +18,12 @@ describe(`${Fridge.name}`, () => {
     fridge.add('apple');
     expect(fridge.print()).to.be.equal("apple: 3 day(s) remaining");
   });
+
+  it('should print two items with lifespan', () => {
+    const fridge = new Fridge();
+    fridge.add('apple');
+    fridge.add('orange');
+    expect(fridge.print()).to.be.equal(`apple: 3 day(s) remaining
+    orange: 3 day(s) remaining`);
+  });
 });
