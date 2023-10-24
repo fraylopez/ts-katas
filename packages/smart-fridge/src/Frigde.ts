@@ -1,12 +1,18 @@
 import assert from "assert";
+import { join } from "path";
 
 export class Fridge {
   count: number = 0;
   private readonly items: Map<Item, Date> = new Map();
+  constructor(private readonly clock: () => Date) {
+
+  }
   print(): any {
     return Array.from(this.items.keys())
       .map(i =>
-        `${i.name}: ${this.getTimeToExpire(i)} day(s) remaining`).join('\n');
+        i.isExpired(this.clock()) ?
+          `EXPIRED: ${i.name}` :
+          `${i.name}: ${this.getTimeToExpire(i)} day(s) remaining`).join('\n');
   }
   add(item: Item, now: Date) {
     this.open();
@@ -59,11 +65,18 @@ export class Item {
   }
 
   isExpired(now: Date): any {
-    return this.expiration.getTime() - now.getTime() < 0;
+    return this.expiration.getTime() - now.getTime() <= 0;
   }
 
   private getDegradationInHours(): number {
     return this.opened ? 5 : 1;
   }
 
+}
+
+
+export class FridgeMother {
+  static aFridge(currentTime: Date): Fridge {
+    return new Fridge(() => currentTime);
+  }
 }

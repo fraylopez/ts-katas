@@ -1,28 +1,28 @@
 import { expect } from "chai";
-import { Fridge, Item } from "../src/Frigde";
+import { Fridge, FridgeMother, Item } from "../src/Frigde";
 import { ItemMother } from "./ItemMother";
-import { Now } from "./Now";
+import { Now, Tomorrow } from "./Now";
 
 describe(`${Fridge.name}`, () => {
   it('should start with no items', () => {
-    const fridge = new Fridge();
+    const fridge = FridgeMother.aFridge(Now);
     expect(fridge.count).equal(0);
   });
 
   it('should add items', () => {
-    const fridge = new Fridge();
+    const fridge = FridgeMother.aFridge(Now);
     fridge.add(ItemMother.apple(5), Now);
     expect(fridge.count).equal(1);
   });
 
   it('should print items with lifespan', () => {
-    const fridge = new Fridge();
+    const fridge = FridgeMother.aFridge(Now);
     fridge.add(Item.fromDate("apple", new Date(2020, 1, 4)), new Date(2020, 1, 1));
     expect(fridge.print()).to.be.equal("apple: 3 day(s) remaining");
   });
 
   it('should print two items with lifespan', () => {
-    const fridge = new Fridge();
+    const fridge = FridgeMother.aFridge(Now);
     fridge.add(ItemMother.apple(), Now);
     fridge.add(ItemMother.orange(), Now);
     expect(fridge.print()).to.include("apple");
@@ -30,17 +30,23 @@ describe(`${Fridge.name}`, () => {
   });
 
   it('should print apple with different lifespan', () => {
-    const fridge = new Fridge();
+    const fridge = FridgeMother.aFridge(Now);
     const apple = ItemMother.apple();
     fridge.add(apple, Now);
     expect(fridge.print()).to.be.equal("apple: 5 day(s) remaining");
   });
 
   it('should print apple with less lifespan when door is opened', () => {
-    const fridge = new Fridge();
+    const fridge = FridgeMother.aFridge(Now);
     fridge.add(ItemMother.orange(), Now);
     fridge.add(ItemMother.apple(), Now);
     expect(fridge.print()).to.contain("orange: 4 day(s) remaining");
+  });
+
+  it('should print apple expired', () => {
+    const fridge = FridgeMother.aFridge(Now);
+    fridge.add(ItemMother.apple(0), Now);
+    expect(fridge.print()).to.contain("EXPIRED: apple");
   });
 });
 
