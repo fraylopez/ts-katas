@@ -48,6 +48,14 @@ describe(`${Fridge.name}`, () => {
     fridge.add(ItemMother.apple(0), Now);
     expect(fridge.print()).to.contain("EXPIRED: apple");
   });
+
+  it('should print apple expired and orange with 1 day left', () => {
+    const fridge = FridgeMother.aFridge(Now);
+    fridge.add(ItemMother.apple(0), Now);
+    fridge.add(ItemMother.orange(1), Now);
+    expect(fridge.print()).to.contain("EXPIRED: apple");
+    expect(fridge.print()).to.contain("orange: 1 day(s) remaining");
+  });
 });
 
 describe(`${Item.name}`, () => {
