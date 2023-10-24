@@ -34,3 +34,12 @@ describe(`${Fridge.name}`, () => {
     expect(fridge.print()).to.be.equal("apple: 5 day(s) remaining");
   });
 });
+
+describe(`${Item.name}`, () => {
+  it('should compute time to expire', () => {
+    const item = Item.fromDate("apple", new Date(2020, 1, 6));
+    expect(item.timeToExpire(new Date(2020, 1, 1))).to.be.equal(5);
+  });
+
+
+});

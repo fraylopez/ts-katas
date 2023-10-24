@@ -12,10 +12,23 @@ export class Fridge {
 
 
 export class Item {
+  private expiration!: Date;
   constructor(
     readonly name: string,
     readonly lifespan: number
   ) { }
+
+  static fromDate(name: string, date: Date): Item {
+    const item = new Item(name, 5);
+    item.expiration = date;
+    return item;
+  }
+
+  timeToExpire(now: Date): number {
+    const diff = this.expiration.getTime() - now.getTime();
+    const days = diff / (1000 * 60 * 60 * 24);
+    return Math.floor(days);
+  }
 }
 
 export class ItemMother {
