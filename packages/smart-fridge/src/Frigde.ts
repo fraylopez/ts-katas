@@ -1,12 +1,22 @@
+import assert from "assert";
+
 export class Fridge {
-  private readonly items: Item[] = [];
-  print(): any {
-    return this.items.map(i => `${i.name}: ${i.lifespan} day(s) remaining`).join('\n');
-  }
   count: number = 0;
-  add(item: Item) {
-    this.items.push(item);
+  private readonly items: Map<Item, Date> = new Map();
+  print(): any {
+    return Array.from(this.items.keys())
+      .map(i =>
+        `${i.name}: ${this.getTimeToExpire(i)} day(s) remaining`).join('\n');
+  }
+  add(item: Item, now?: Date) {
+    this.items.set(item, now || new Date());
     this.count++;
+  }
+
+  getTimeToExpire(item: Item): number {
+    const now = this.items.get(item);
+    assert(now, "Item not found");
+    return item.timeToExpire(now);
   }
 }
 

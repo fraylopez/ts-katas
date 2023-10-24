@@ -15,7 +15,7 @@ describe(`${Fridge.name}`, () => {
 
   it('should print items with lifespan', () => {
     const fridge = new Fridge();
-    fridge.add(ItemMother.apple(3));
+    fridge.add(Item.fromDate("apple", new Date(2020, 1, 4)), new Date(2020, 1, 1));
     expect(fridge.print()).to.be.equal("apple: 3 day(s) remaining");
   });
 
@@ -40,6 +40,7 @@ describe(`${Item.name}`, () => {
     const item = Item.fromDate("apple", new Date(2020, 1, 6));
     expect(item.timeToExpire(new Date(2020, 1, 1))).to.be.equal(5);
   });
+
 
 
 });
