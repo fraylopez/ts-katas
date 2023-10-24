@@ -26,4 +26,12 @@ describe(`${Fridge.name}`, () => {
     expect(fridge.print()).to.include("apple");
     expect(fridge.print()).to.include("orange");
   });
+
+  it('should print apple with different lifespan', () => {
+    const fridge = new Fridge();
+    const apple = new Item("apple", 5);
+    fridge.add(apple);
+    expect(fridge.print()).to.be.equal("apple: 5 day(s) remaining");
+  });
+
 });

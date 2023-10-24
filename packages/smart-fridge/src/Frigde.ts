@@ -9,3 +9,11 @@ export class Fridge {
     this.count++;
   }
 }
+
+
+export class Item {
+  constructor(
+    readonly name: string,
+    readonly lifespan: number
+  ) { }
+}
