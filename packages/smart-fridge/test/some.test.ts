@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Fridge } from "../src/Frigde";
+import { Fridge, Item, ItemMother } from "../src/Frigde";
 
 describe(`${Fridge.name}`, () => {
   it('should start with no items', () => {
@@ -9,20 +9,20 @@ describe(`${Fridge.name}`, () => {
 
   it('should add items', () => {
     const fridge = new Fridge();
-    fridge.add('apple');
+    fridge.add(ItemMother.apple());
     expect(fridge.count).equal(1);
   });
 
   it('should print items with lifespan', () => {
     const fridge = new Fridge();
-    fridge.add('apple');
+    fridge.add(ItemMother.apple());
     expect(fridge.print()).to.be.equal("apple: 3 day(s) remaining");
   });
 
   it('should print two items with lifespan', () => {
     const fridge = new Fridge();
-    fridge.add('apple');
-    fridge.add('orange');
+    fridge.add(ItemMother.apple());
+    fridge.add(ItemMother.orange());
     expect(fridge.print()).to.include("apple");
     expect(fridge.print()).to.include("orange");
   });
@@ -33,5 +33,4 @@ describe(`${Fridge.name}`, () => {
     fridge.add(apple);
     expect(fridge.print()).to.be.equal("apple: 5 day(s) remaining");
   });
-
 });
