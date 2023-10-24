@@ -17,24 +17,23 @@ export class GoldenMasterTextTest {
   ];
   private readonly gildedRose: GildedRose;
 
-  constructor() {
+  constructor(private readonly printer: Printer) {
     this.gildedRose = new GildedRose(this.items);
   }
 
-  run(printer: Printer) {
-    let days: number = 2;
+  run(days: number = 2) {
     // if (process.argv.length > 2) {
     //   days = +process.argv[2];
     // }
 
     for (let i = 0; i < days; i++) {
-      printer.print("-------- day " + i + " --------");
-      printer.print("name, sellIn, quality");
+      this.printer.print("-------- day " + i + " --------");
+      this.printer.print("name, sellIn, quality");
       this.items.forEach(element => {
-        printer.print(element.name + ' ' + element.sellIn + ' ' + element.quality);
+        this.printer.print(element.name + ' ' + element.sellIn + ' ' + element.quality);
 
       });
-      printer.print();
+      this.printer.print();
       this.gildedRose.updateQuality();
     }
   }
