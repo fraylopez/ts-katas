@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { GildedRose, Item } from "../../app/gilded-rose";
 import { output } from "./output";
 import { Printer } from "../Printer";
-import { runExample } from "../golden-master-text-test";
+import { GoldenMasterTextTest } from '../GoldenMasterTextTest';
 
 describe('Gilded Rose', () => {
   it('should foo', () => {
@@ -43,8 +43,9 @@ describe('Gilded Rose', () => {
 
   it('sfgdfgdfdfd', () => {
     const printer = new Printer();
-    runExample(printer);
-
+    const textTest = new GoldenMasterTextTest();
+    textTest.run(printer);
+    
     const currentOutput = printer.getStatement();
     expect(currentOutput).to.equal(output);
   });
