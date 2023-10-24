@@ -29,6 +29,7 @@ export class Fridge {
 
 
 export class Item {
+
   private opened: boolean;
   constructor(
     readonly name: string,
@@ -55,6 +56,10 @@ export class Item {
 
   setOpened() {
     this.opened = true;
+  }
+
+  isExpired(now: Date): any {
+    return this.expiration.getTime() - now.getTime() < 0;
   }
 
   private getDegradationInHours(): number {

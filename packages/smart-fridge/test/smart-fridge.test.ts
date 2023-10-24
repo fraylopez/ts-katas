@@ -73,4 +73,12 @@ describe(`${Item.name}`, () => {
     expect(item.timeToExpire(new Date(2020, 1, 1))).to.be.equal(3);
   });
 
+  it('should expire items', () => {
+    const item = Item.fromDate("apple", new Date(2020, 1, 6));
+    item.setOpened();
+    for (let i = 0; i < 5 * 5; i++) {
+      item.degrade();
+    }
+    expect(item.isExpired(Now)).equal(true);
+  });
 });
