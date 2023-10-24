@@ -35,7 +35,6 @@ export class Fridge {
 
 
 export class Item {
-
   private opened: boolean;
   constructor(
     readonly name: string,
@@ -71,9 +70,7 @@ export class Item {
   private getDegradationInHours(): number {
     return this.opened ? 5 : 1;
   }
-
 }
-
 
 export class FridgeMother {
   static aFridge(currentTime: Date): Fridge {
