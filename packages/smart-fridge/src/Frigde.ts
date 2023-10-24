@@ -25,7 +25,7 @@ export class Item {
 
   constructor(
     readonly name: string,
-    readonly expiration: Date
+    private expiration: Date
   ) { }
 
   static fromDate(name: string, date: Date): Item {
@@ -39,6 +39,7 @@ export class Item {
   }
 
   degrade() {
-    this.expiration.setDate(this.expiration.getDate() - 1);
+    const oneHourLess = this.expiration.getTime() - (1000 * 60 * 60);
+    this.expiration = new Date(oneHourLess);
   }
 }
