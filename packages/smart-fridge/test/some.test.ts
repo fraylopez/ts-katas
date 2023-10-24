@@ -13,6 +13,12 @@ describe(`${Fridge.name}`, () => {
     expect(fridge.count).equal(1);
   });
 
+  it('should print items with lifespan', () => {
+    const fridge = new Fridge();
+    fridge.add('apple');
+    fridge.print();
+  });
+
 
 });
 
