@@ -1,16 +1,5 @@
-import { expect } from 'chai';
-import { GildedRose, Item } from "../../app/gilded-rose";
-import { output } from "./output";
 
-describe('Gilded Rose', () => {
-  it('should foo', () => {
-    const gildedRose = new GildedRose([new Item('foo', 0, 0)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).to.equal('fixme');
-  });
-
-  it('asdasd', () => {
-    const currentOutput = `
+export const output = `
     -------- day 0 --------
     name, sellIn, quality
     +5 Dexterity Vest 10 20
@@ -35,11 +24,3 @@ describe('Gilded Rose', () => {
     Backstage passes to a TAFKAL80ETC concert 4 50
     Conjured Mana Cake 2 5
 `;
-
-    expect(output).to.equal(currentOutput);
-  });
-});
-
-
-
-

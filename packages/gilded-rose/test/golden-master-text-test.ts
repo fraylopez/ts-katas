@@ -21,12 +21,16 @@ if (process.argv.length > 2) {
 }
 
 for (let i = 0; i < days; i++) {
-  console.log("-------- day " + i + " --------");
-  console.log("name, sellIn, quality");
+  print("-------- day " + i + " --------");
+  print("name, sellIn, quality");
   items.forEach(element => {
-    console.log(element.name + ' ' + element.sellIn + ' ' + element.quality);
+    print(element.name + ' ' + element.sellIn + ' ' + element.quality);
 
   });
-  console.log();
+  print();
   gildedRose.updateQuality();
+}
+
+function print(string: string = "") {
+  console.log(string);
 }
