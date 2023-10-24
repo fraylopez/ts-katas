@@ -1,5 +1,6 @@
 import { expect } from "chai";
-import { Fridge, Item, ItemMother } from "../src/Frigde";
+import { Fridge, Item } from "../src/Frigde";
+import { ItemMother } from "./ItemMother";
 
 describe(`${Fridge.name}`, () => {
   it('should start with no items', () => {

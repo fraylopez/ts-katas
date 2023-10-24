@@ -22,32 +22,18 @@ export class Fridge {
 
 
 export class Item {
-  private expiration!: Date;
   constructor(
     readonly name: string,
-    readonly lifespan: number
+    readonly expiration : Date
   ) { }
 
   static fromDate(name: string, date: Date): Item {
-    const item = new Item(name, 5);
-    item.expiration = date;
-    return item;
+    return new Item(name, date);
   }
 
   timeToExpire(now: Date): number {
     const diff = this.expiration.getTime() - now.getTime();
     const days = diff / (1000 * 60 * 60 * 24);
     return Math.floor(days);
-  }
-}
-
-export class ItemMother {
-
-  public static apple(lifespan: number = 5): Item {
-    return new Item('apple', lifespan);
-  }
-
-  public static orange(lifespan: number = 5): Item {
-    return new Item('orange', lifespan);
   }
 }
