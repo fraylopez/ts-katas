@@ -1,6 +1,8 @@
 import { expect } from 'chai';
 import { GildedRose, Item } from "../../app/gilded-rose";
-import { output } from "./output";
+import { output, output } from "./output";
+import { Printer } from "../Printer";
+import { runExample } from "../golden-master-text-test";
 
 describe('Gilded Rose', () => {
   it('should foo', () => {
@@ -34,9 +36,19 @@ describe('Gilded Rose', () => {
     Backstage passes to a TAFKAL80ETC concert 9 50
     Backstage passes to a TAFKAL80ETC concert 4 50
     Conjured Mana Cake 2 5
-`;
+    `;
 
     expect(output).to.equal(currentOutput);
+  });
+
+  it('sfgdfgdfdfd', () => {
+    const printer = new Printer();
+    printer.print("");
+    runExample(printer);
+    printer.print("");
+
+    const currentOutput = printer.statements.join('\n');
+    expect(currentOutput).to.equal(output);
   });
 });
 

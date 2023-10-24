@@ -1,4 +1,5 @@
 import { Item, GildedRose } from '../app/gilded-rose';
+import { Printer } from "./Printer";
 
 const items = [
   new Item("+5 Dexterity Vest", 10, 20), //
@@ -12,25 +13,24 @@ const items = [
   // this conjured item does not work properly yet
   new Item("Conjured Mana Cake", 3, 6)];
 
-
 const gildedRose = new GildedRose(items);
 
-let days: number = 2;
-if (process.argv.length > 2) {
-  days = +process.argv[2];
-}
+runExample(new Printer());
 
-for (let i = 0; i < days; i++) {
-  print("-------- day " + i + " --------");
-  print("name, sellIn, quality");
-  items.forEach(element => {
-    print(element.name + ' ' + element.sellIn + ' ' + element.quality);
+export function runExample(printer: Printer) {
+  let days: number = 2;
+  if (process.argv.length > 2) {
+    days = +process.argv[2];
+  }
 
-  });
-  print();
-  gildedRose.updateQuality();
-}
+  for (let i = 0; i < days; i++) {
+    printer.print("-------- day " + i + " --------");
+    printer.print("name, sellIn, quality");
+    items.forEach(element => {
+      printer.print(element.name + ' ' + element.sellIn + ' ' + element.quality);
 
-function print(string: string = "") {
-  console.log(string);
+    });
+    printer.print();
+    gildedRose.updateQuality();
+  }
 }
