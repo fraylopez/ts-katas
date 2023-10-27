@@ -9,16 +9,16 @@ export class GildedRose {
 
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      if (!this.incresesValueOverLifetime(i)) {
+      if (this.incresesValueOverLifetime(i)) {
+        if (!this.isLegendary(i)) {
+          this.increaseItemQuality(i);
+          this.handleBackstageTicketsItem(i);
+        }
+      } else {
         if (this.isFresh(i)) {
           if (!this.isLegendary(i)) {
             this.decreaseItemQuality(i);
           }
-        }
-      } else {
-        if (!this.isLegendary(i)) {
-          this.increaseItemQuality(i);
-          this.handleBackstageTicketsItem(i);
         }
       }
       if (!this.isLegendary(i)) {
@@ -26,10 +26,10 @@ export class GildedRose {
       }
       if (this.dueDateReached(i)) {
         if (!this.incresesValueOverLifetime(i)) {
-            if (this.isFresh(i)) {
-              if (!this.isLegendary(i)) {
-                this.decreaseItemQuality(i);
-              }
+          if (this.isFresh(i)) {
+            if (!this.isLegendary(i)) {
+              this.decreaseItemQuality(i);
+            }
           } else {
             this.items[i].quality = this.items[i].quality - this.items[i].quality;
           }
