@@ -8,16 +8,16 @@ export class GildedRose {
     this.items = items;
   }
 
-  updateQuality() {
+  tickDay() {
     for (let i = 0; i < this.items.length; i++) {
 
-      this.updateItemQuality(i);
+      this.tickItem(i);
     }
 
     return this.items;
   }
 
-  private updateItemQuality(i: number) {
+  private tickItem(i: number) {
     if (this.isLegendary(i)) {
       return;
     }
