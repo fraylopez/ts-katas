@@ -22,21 +22,13 @@ export class GildedRose {
       return;
     }
 
-    if (this.incresesValueOverLifetime(i)) {
-
-      this.increaseItemQuality(i);
-      this.handleBackstageTicketsItem(i);
-    } else {
-      if (this.isFresh(i)) {
-        this.decreaseItemQuality(i);
-      }
-    }
+    this.nonPerishedLife(i);
 
     this.decreaseTimeToSell(i);
 
     if (this.dueDateReached(i)) {
       if (this.nonPerishable(i)) {
-        this.increaseItemQuality(i);
+        this.increaseItemQualityByOne(i);
       } else {
         if (this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
 
@@ -47,6 +39,17 @@ export class GildedRose {
             this.decreaseItemQuality(i);
           }
         }
+      }
+    }
+  }
+
+  private nonPerishedLife(i: number) {
+    if (this.incresesValueOverLifetime(i)) {
+      this.increaseItemQualityByOne(i);
+      this.handleBackstageTicketsItem(i);
+    } else {
+      if (this.isFresh(i)) {
+        this.decreaseItemQuality(i);
       }
     }
   }
@@ -70,10 +73,10 @@ export class GildedRose {
   private handleBackstageTicketsItem(i: number) {
     if (this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
       if (this.items[i].sellIn < 11) {
-        this.increaseItemQuality(i);
+        this.increaseItemQualityByOne(i);
       }
       if (this.items[i].sellIn < 6) {
-        this.increaseItemQuality(i);
+        this.increaseItemQualityByOne(i);
       }
     }
   }
@@ -98,7 +101,7 @@ export class GildedRose {
     this.items[i].quality = this.items[i].quality - 1;
   }
 
-  private increaseItemQuality(i: number) {
+  private increaseItemQualityByOne(i: number) {
     if (this.items[i].quality < 50) {
       this.items[i].quality = this.items[i].quality + 1;
     }
