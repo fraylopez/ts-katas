@@ -33,13 +33,21 @@ export class GildedRose {
   }
 
   private nonPerishedLife(item: Item) {
-    if (!item.isExpired() && !item.agesGracefully()) {
-      item.age();
+    if (!item.isExpired()) {
+      if (!item.agesGracefully()) {
+        item.age();
+      }
+      else {
+        this.ageGracefully(item);
+      }
     }
     else {
-      item.increaseItemQualityByOne();
-      this.handleBackstageTicketsItem(item);
+      this.ageGracefully(item);
     }
+  }
+  private ageGracefully(item: Item) {
+    item.increaseItemQualityByOne();
+    this.handleBackstageTicketsItem(item);
   }
 
   private handleBackstageTicketsItem(item: Item) {
