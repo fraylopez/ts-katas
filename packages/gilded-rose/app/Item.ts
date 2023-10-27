@@ -1,4 +1,5 @@
 export class Item {
+
   name: string;
   sellIn: number;
   quality: number;
@@ -7,5 +8,24 @@ export class Item {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
+  }
+
+  expire() {
+    this.quality = 0;
+  }
+
+  decreaseTimeToSell() {
+    this.sellIn -= 1;
+  }
+  dueDateReached() {
+    return this.sellIn < 0;
+  }
+
+  isFresh() {
+    return this.quality > 0;
+  }
+
+  nonPerishable() {
+    return this.name == 'Aged Brie';
   }
 }

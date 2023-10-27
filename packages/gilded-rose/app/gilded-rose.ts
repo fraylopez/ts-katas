@@ -32,7 +32,7 @@ export class GildedRose {
   private afterDueDateReached(i: number) {
 
     if (this.isFresh(i)) {
-        this.age(i);
+      this.age(i);
     }
   }
 
@@ -47,15 +47,15 @@ export class GildedRose {
   }
 
   private nonPerishable(i: number) {
-    return this.items[i].name == 'Aged Brie';
+    return this.items[i].nonPerishable();
   }
 
   private decreaseTimeToSell(i: number) {
-    this.items[i].sellIn = this.items[i].sellIn - 1;
+    this.items[i].decreaseTimeToSell();
   }
 
   private expireItem(i: number) {
-    this.items[i].quality = 0;
+    this.items[i].expire();
   }
 
   private agesGracefully(i: number) {
@@ -74,11 +74,11 @@ export class GildedRose {
   }
 
   private dueDateReached(i: number) {
-    return this.items[i].sellIn < 0;
+    return this.items[i].dueDateReached();
   }
 
   private isFresh(i: number) {
-    return this.items[i].quality > 0;
+    return this.items[i].isFresh();
   }
 
   private isLegendary(i: number) {
@@ -93,9 +93,8 @@ export class GildedRose {
 
     if (this.nonPerishable(i)) {
       this.increaseItemQualityByOne(i);
-    } 
-    else
-    {
+    }
+    else {
       if (this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
         this.expireItem(i);
       }
