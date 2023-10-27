@@ -9,7 +9,7 @@ export class GildedRose {
 
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      if (!this.equalsItemName(i, 'Aged Brie') && !this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
+      if (!this.incresesValueOverLifetime(i)) {
         if (this.isFresh(i)) {
           if (!this.isLegendary(i)) {
             this.decreaseItemQuality(i);
@@ -55,6 +55,10 @@ export class GildedRose {
     }
 
     return this.items;
+  }
+
+  private incresesValueOverLifetime(i: number) {
+    return this.equalsItemName(i, 'Aged Brie') || this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert');
   }
 
   private isFresh(i: number) {
