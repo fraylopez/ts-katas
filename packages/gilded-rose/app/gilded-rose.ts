@@ -1,4 +1,5 @@
 import { Item } from "./Item";
+import { i } from "vitest/dist/types-0373403c";
 
 export class GildedRose {
   items: Array<Item>;
@@ -7,27 +8,21 @@ export class GildedRose {
     this.items = items;
   }
 
-  updateQuality() {
+  tickDay() {
     for (let i = 0; i < this.items.length; i++) {
-      this.updateItemQuality(i);
+
+      this.tickItem(i);
     }
 
     return this.items;
   }
 
-  private updateItemQuality(i: number) {
+  private tickItem(i: number) {
     if (this.isLegendary(i)) {
       return;
+    }
 
-    }
-    if (this.incresesValueOverLifetime(i)) {
-      this.increaseItemQuality(i);
-      this.handleBackstageTicketsItem(i);
-    } else {
-      if (this.isFresh(i)) {
-        this.decreaseItemQuality(i);
-      }
-    }
+    this.nonPerishedLife(i);
     this.decreaseTimeToSell(i);
     if (this.dueDateReached(i)) {
       this.afterDueDateReached(i);
@@ -35,66 +30,66 @@ export class GildedRose {
   }
 
   private afterDueDateReached(i: number) {
-    if (!this.isFresh(i)) {
-      this.expireItem(i);
-      return;
-    }
-    if (this.incresesValueOverLifetime(i)) {
-      this.increaseItemQuality(i);
-    } else {
-      this.decreaseItemQuality(i);
+
+    if (this.isFresh(i)) {
+      this.age(i);
     }
   }
+
+  private nonPerishedLife(i: number) {
+    if (this.isFresh(i) && !this.agesGracefully(i)) {
+      this.age(i);
+    }
+    else {
+      this.increaseItemQualityByOne(i);
+      this.handleBackstageTicketsItem(i);
+    }
+  }
+
 
   private decreaseTimeToSell(i: number) {
-    this.items[i].sellIn = this.items[i].sellIn - 1;
+    this.items[i].decreaseTimeToSell();
   }
 
-  private expireItem(i: number) {
-    this.items[i].quality = 0;
-  }
-
-  private incresesValueOverLifetime(i: number) {
-    return this.equalsItemName(i, 'Aged Brie') || this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert');
+  private agesGracefully(i: number) {
+    return this.items[i].agesGracefully();
   }
 
   private handleBackstageTicketsItem(i: number) {
     if (this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
       if (this.items[i].sellIn < 11) {
-        if (this.items[i].quality < 50) {
-          this.increaseItemQuality(i);
-        }
+        this.increaseItemQualityByOne(i);
       }
       if (this.items[i].sellIn < 6) {
-        if (this.items[i].quality < 50) {
-          this.increaseItemQuality(i);
-        }
+        this.increaseItemQualityByOne(i);
       }
     }
   }
 
   private dueDateReached(i: number) {
-    return this.items[i].sellIn < 0;
+    return this.items[i].dueDateReached();
   }
 
   private isFresh(i: number) {
-    return this.items[i].quality > 0;
+    return this.items[i].isFresh();
   }
 
   private isLegendary(i: number) {
-    return this.equalsItemName(i, 'Sulfuras, Hand of Ragnaros');
+    return this.items[i].isLegendary();
   }
 
   private equalsItemName(i: number, name: string) {
     return this.items[i].name == name;
   }
 
-  private decreaseItemQuality(i: number) {
-    this.items[i].quality = this.items[i].quality - 1;
+  private age(i: number) {
+    this.items[i].age();
   }
 
-  private increaseItemQuality(i: number) {
-    this.items[i].quality = this.items[i].quality + 1;
+  private increaseItemQualityByOne(i: number) {
+    if (this.items[i].quality < 50) {
+      this.items[i].quality = this.items[i].quality + 1;
+    }
   }
 
 

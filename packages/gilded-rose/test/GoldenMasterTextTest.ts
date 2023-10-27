@@ -35,7 +35,7 @@ export class GoldenMasterTextTest {
 
       });
       this.printer.print();
-      this.gildedRose.updateQuality();
+      this.gildedRose.tickDay();
     }
   }
 }
