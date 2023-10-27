@@ -38,12 +38,14 @@ export class GildedRose {
       if (this.nonPerishable(i)) {
         this.increaseItemQuality(i);
       } else {
-        if (!this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
+        if (this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
+
+          this.expireItem(i);
+
+        } else {
           if (this.isFresh(i)) {
             this.decreaseItemQuality(i);
           }
-        } else {
-          this.expireItem(i);
         }
       }
     }
