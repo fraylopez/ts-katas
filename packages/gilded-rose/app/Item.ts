@@ -28,7 +28,7 @@ export class Item {
   }
 
   agesGracefully() {
-    return this.nonPerishable() || this.name == 'Backstage passes to a TAFKAL80ETC concert';
+    return this.name == 'Aged Brie' || this.name == 'Backstage passes to a TAFKAL80ETC concert';
   }
 
   isLegendary() {
