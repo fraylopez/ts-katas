@@ -1,4 +1,5 @@
 import { Item } from "./Item";
+import { i } from "vitest/dist/types-0373403c";
 
 export class GildedRose {
   items: Array<Item>;
@@ -9,19 +10,18 @@ export class GildedRose {
 
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
+      if (this.isLegendary(i)) {
+        continue;
+      }
       if (!this.incresesValueOverLifetime(i)) {
         if (this.isFresh(i)) {
-          if (!this.isLegendary(i)) {
-            this.decreaseItemQuality(i);
-          }
+          this.decreaseItemQuality(i);
         }
       } else {
         this.increaseItemQuality(i);
         this.handleBackstageTicketsItem(i);
       }
-      if (!this.isLegendary(i)) {
-        this.decreaseTimeToSell(i);
-      }
+      this.decreaseTimeToSell(i);
       if (this.dueDateReached(i)) {
         if (this.nonPerishable(i)) {
           this.increaseItemQuality(i);
@@ -29,9 +29,7 @@ export class GildedRose {
         } else {
           if (!this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
             if (this.isFresh(i)) {
-              if (!this.isLegendary(i)) {
-                this.decreaseItemQuality(i);
-              }
+              this.decreaseItemQuality(i);
             }
           } else {
             this.expireItem(i);
