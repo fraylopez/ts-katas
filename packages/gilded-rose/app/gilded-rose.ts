@@ -33,13 +33,8 @@ export class GildedRose {
   }
 
   private nonPerishedLife(item: Item) {
-    if (!item.isExpired()) {
-      if (!item.agesGracefully()) {
-        item.age();
-      }
-      else {
-        this.ageGracefully(item);
-      }
+    if (!item.agesGracefully()) {
+      item.age();
     }
     else {
       this.ageGracefully(item);
