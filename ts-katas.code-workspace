@@ -5,8 +5,8 @@
 			"path": "."
 		},
 		{
-			"name": "📦 smart-fridge-kata",
-			"path": "packages/smart-fridge"
+			"name": "📦 gilded-rose-kata",
+			"path": "packages/gilded-rose"
 		}
 	],
 	"settings": {}
