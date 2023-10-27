@@ -44,14 +44,14 @@ export class GildedRose {
   }
 
   private nonPerishedLife(i: number) {
-    if (this.agesGracefully(i)) {
+
+    if (this.isFresh(i) && !this.agesGracefully(i)) {
+      this.decreaseItemQuality(i);
+    }
+    else {
       this.increaseItemQualityByOne(i);
       this.handleBackstageTicketsItem(i);
-    } else {
-      if (this.isFresh(i)) {
-        this.decreaseItemQuality(i);
-      }
-    }
+    } 
   }
 
   private nonPerishable(i: number) {
