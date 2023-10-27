@@ -10,7 +10,7 @@ export class GildedRose {
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
       if (!this.equalsItemName(i, 'Aged Brie') && !this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
-        if (this.items[i].quality > 0) {
+        if (this.isFresh(i)) {
           if (!this.equalsItemName(i, 'Sulfuras, Hand of Ragnaros')) {
             this.decreaseItemQuality(i);
           }
@@ -18,7 +18,7 @@ export class GildedRose {
       } else {
         if (this.items[i].quality < 50) {
           this.increaseItemQuality(i);
-          if (this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert') ) {
+          if (this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
             if (this.items[i].sellIn < 11) {
               if (this.items[i].quality < 50) {
                 this.increaseItemQuality(i);
@@ -38,7 +38,7 @@ export class GildedRose {
       if (this.items[i].sellIn < 0) {
         if (this.items[i].name != 'Aged Brie') {
           if (!this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
-            if (this.items[i].quality > 0) {
+            if (this.isFresh(i)) {
               if (!this.equalsItemName(i, 'Sulfuras, Hand of Ragnaros')) {
                 this.decreaseItemQuality(i);
               }
@@ -55,6 +55,10 @@ export class GildedRose {
     }
 
     return this.items;
+  }
+
+  private isFresh(i: number) {
+    return this.items[i].quality > 0;
   }
 
   private equalsItemName(i: number, name: string) {
