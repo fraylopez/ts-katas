@@ -71,7 +71,7 @@ export class GildedRose {
   }
 
   private isFresh(i: number) {
-    return this.items[i].isFresh();
+    return !this.items[i].isExpired();
   }
 
   private isLegendary(i: number) {

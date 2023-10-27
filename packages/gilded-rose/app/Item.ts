@@ -12,8 +12,6 @@ export class Item {
     this.quality = quality;
   }
 
-
-
   decreaseTimeToSell() {
     this.sellIn -= 1;
   }
@@ -21,13 +19,14 @@ export class Item {
     return this.sellIn < 0;
   }
 
-  isFresh() {
-    return this.quality > 0;
+  isExpired() {
+    return this.quality <= 0;
   }
 
   nonPerishable() {
     return this.name == 'Aged Brie';
   }
+
   agesGracefully() {
     return this.nonPerishable() || this.name == 'Backstage passes to a TAFKAL80ETC concert';
   }
@@ -41,6 +40,7 @@ export class Item {
       this.increaseItemQualityByOne();
     }
     else {
+      this.decreaseQuality();
       if (this.name === 'Backstage passes to a TAFKAL80ETC concert') {
         this.expire();
       }
@@ -54,6 +54,10 @@ export class Item {
     if (this.quality < 50) {
       this.quality += 1;
     }
+  }
+
+  private decreaseQuality() {
+
   }
 
   private expire() {
