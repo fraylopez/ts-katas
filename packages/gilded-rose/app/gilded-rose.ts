@@ -44,7 +44,7 @@ export class GildedRose {
   }
 
   private nonPerishedLife(i: number) {
-    if (this.incresesValueOverLifetime(i)) {
+    if (this.agesGracefully(i)) {
       this.increaseItemQualityByOne(i);
       this.handleBackstageTicketsItem(i);
     } else {
@@ -66,7 +66,7 @@ export class GildedRose {
     this.items[i].quality = 0;
   }
 
-  private incresesValueOverLifetime(i: number) {
+  private agesGracefully(i: number) {
     return this.equalsItemName(i, 'Aged Brie') || this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert');
   }
 
