@@ -16,7 +16,7 @@ export class GildedRose {
           }
         }
       } else {
-        if (this.items[i].quality < 50) {
+        if (!this.isLegendary(i)) {
           this.increaseItemQuality(i);
           this.handleBackstageTicketsItem(i);
         }
@@ -36,7 +36,7 @@ export class GildedRose {
             this.items[i].quality = this.items[i].quality - this.items[i].quality;
           }
         } else {
-          if (this.items[i].quality < 50) {
+          if (!this.isLegendary(i)) {
             this.increaseItemQuality(i);
           }
         }
