@@ -7,10 +7,10 @@ import { GoldenMasterTextTest } from '../GoldenMasterTextTest';
 import { it } from "mocha";
 
 describe('Gilded Rose', () => {
-  it('expected output for 2 days', () => {
+  it('expected output for 20 days', () => {
     const printer = new Printer();
     const textTest = new GoldenMasterTextTest(printer);
-    const days = 2;
+    const days = 20;
 
     textTest.run(days);
 
