@@ -16,34 +16,27 @@ export class GildedRose {
   }
 
   private updateItemQuality(i: number) {
+    if (this.isLegendary(i)) {
+      return;
+    }
     if (this.incresesValueOverLifetime(i)) {
-      if (!this.isLegendary(i)) {
-        this.increaseItemQuality(i);
-        this.handleBackstageTicketsItem(i);
-      }
+      this.increaseItemQuality(i);
+      this.handleBackstageTicketsItem(i);
     } else {
       if (this.isFresh(i)) {
-        if (!this.isLegendary(i)) {
-          this.decreaseItemQuality(i);
-        }
+        this.decreaseItemQuality(i);
       }
     }
-    if (!this.isLegendary(i)) {
-      this.items[i].sellIn = this.items[i].sellIn - 1;
-    }
+    this.items[i].sellIn = this.items[i].sellIn - 1;
     if (this.dueDateReached(i)) {
       if (!this.incresesValueOverLifetime(i)) {
         if (this.isFresh(i)) {
-          if (!this.isLegendary(i)) {
-            this.decreaseItemQuality(i);
-          }
+          this.decreaseItemQuality(i);
         } else {
           this.items[i].quality = this.items[i].quality - this.items[i].quality;
         }
       } else {
-        if (!this.isLegendary(i)) {
-          this.increaseItemQuality(i);
-        }
+        this.increaseItemQuality(i);
       }
     }
   }
