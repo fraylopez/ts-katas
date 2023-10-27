@@ -30,18 +30,15 @@ export class GildedRose {
   }
 
   private afterDueDateReached(i: number) {
-    if (this.nonPerishable(i)) {
-      this.increaseItemQualityByOne(i);
-    } else {
-      if (this.isFresh(i)) {
-        this.decreaseItemQuality(i);
-      }
+
+    if (this.isFresh(i)) {
+        this.age(i);
     }
   }
 
   private nonPerishedLife(i: number) {
     if (this.isFresh(i) && !this.agesGracefully(i)) {
-      this.decreaseItemQuality(i);
+      this.age(i);
     }
     else {
       this.increaseItemQualityByOne(i);
@@ -92,12 +89,19 @@ export class GildedRose {
     return this.items[i].name == name;
   }
 
-  private decreaseItemQuality(i: number) {
-    if (this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
-      this.expireItem(i);
-    }
-    else {
-      this.items[i].quality = this.items[i].quality - 1;
+  private age(i: number) {
+
+    if (this.nonPerishable(i)) {
+      this.increaseItemQualityByOne(i);
+    } 
+    else
+    {
+      if (this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
+        this.expireItem(i);
+      }
+      else {
+        this.items[i].quality = this.items[i].quality - 1;
+      }
     }
   }
 
