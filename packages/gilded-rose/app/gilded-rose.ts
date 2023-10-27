@@ -22,19 +22,21 @@ export class GildedRose {
       return;
     }
 
-    if (!this.incresesValueOverLifetime(i)) {
+    if (this.incresesValueOverLifetime(i)) {
+
+      this.increaseItemQuality(i);
+      this.handleBackstageTicketsItem(i);
+    } else {
       if (this.isFresh(i)) {
         this.decreaseItemQuality(i);
       }
-    } else {
-      this.increaseItemQuality(i);
-      this.handleBackstageTicketsItem(i);
     }
+
     this.decreaseTimeToSell(i);
+
     if (this.dueDateReached(i)) {
       if (this.nonPerishable(i)) {
         this.increaseItemQuality(i);
-
       } else {
         if (!this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
           if (this.isFresh(i)) {
