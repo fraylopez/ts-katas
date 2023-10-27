@@ -1,5 +1,3 @@
-import { i } from "vitest/dist/types-0373403c";
-
 export class Item {
 
   name: string;

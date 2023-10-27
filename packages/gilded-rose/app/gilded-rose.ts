@@ -1,5 +1,4 @@
 import { Item } from "./Item";
-import { i } from "vitest/dist/types-0373403c";
 
 export class GildedRose {
   items: Array<Item>;
