@@ -54,10 +54,6 @@ export class GildedRose {
     this.items[i].decreaseTimeToSell();
   }
 
-  private expireItem(i: number) {
-    this.items[i].expire();
-  }
-
   private agesGracefully(i: number) {
     return this.items[i].agesGracefully();
   }
@@ -82,7 +78,7 @@ export class GildedRose {
   }
 
   private isLegendary(i: number) {
-    return this.equalsItemName(i, 'Sulfuras, Hand of Ragnaros');
+    return this.items[i].isLegendary();
   }
 
   private equalsItemName(i: number, name: string) {
@@ -90,18 +86,7 @@ export class GildedRose {
   }
 
   private age(i: number) {
-
-    if (this.nonPerishable(i)) {
-      this.increaseItemQualityByOne(i);
-    }
-    else {
-      if (this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
-        this.expireItem(i);
-      }
-      else {
-        this.items[i].quality = this.items[i].quality - 1;
-      }
-    }
+    this.items[i].age();
   }
 
   private increaseItemQualityByOne(i: number) {
