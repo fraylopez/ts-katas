@@ -46,9 +46,6 @@ export class GildedRose {
     }
   }
 
-  private nonPerishable(i: number) {
-    return this.items[i].nonPerishable();
-  }
 
   private decreaseTimeToSell(i: number) {
     this.items[i].decreaseTimeToSell();
