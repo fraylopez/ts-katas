@@ -18,6 +18,7 @@ export class GildedRose {
   private updateItemQuality(i: number) {
     if (this.isLegendary(i)) {
       return;
+
     }
     if (this.incresesValueOverLifetime(i)) {
       this.increaseItemQuality(i);
@@ -29,14 +30,14 @@ export class GildedRose {
     }
     this.decreaseTimeToSell(i);
     if (this.dueDateReached(i)) {
-      if (!this.incresesValueOverLifetime(i)) {
+      if (this.incresesValueOverLifetime(i)) {
+        this.increaseItemQuality(i);
+      } else {
         if (this.isFresh(i)) {
           this.decreaseItemQuality(i);
         } else {
           this.expireItem(i);
         }
-      } else {
-        this.increaseItemQuality(i);
       }
     }
   }
