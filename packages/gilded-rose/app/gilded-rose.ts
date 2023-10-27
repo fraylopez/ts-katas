@@ -27,7 +27,7 @@ export class GildedRose {
         this.decreaseItemQuality(i);
       }
     }
-    this.items[i].sellIn = this.items[i].sellIn - 1;
+    this.decreaseTimeToSell(i);
     if (this.dueDateReached(i)) {
       if (!this.incresesValueOverLifetime(i)) {
         if (this.isFresh(i)) {
@@ -39,6 +39,10 @@ export class GildedRose {
         this.increaseItemQuality(i);
       }
     }
+  }
+
+  private decreaseTimeToSell(i: number) {
+    this.items[i].sellIn = this.items[i].sellIn - 1;
   }
 
   private expireItem(i: number) {
