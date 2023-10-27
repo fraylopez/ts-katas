@@ -18,24 +18,13 @@ export class GildedRose {
       } else {
         if (this.items[i].quality < 50) {
           this.increaseItemQuality(i);
-          if (this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert') ) {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.increaseItemQuality(i);
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.increaseItemQuality(i);
-              }
-            }
-          }
+          this.handleBackstageTicketsItem(i);
         }
       }
       if (!this.isLegendary(i)) {
         this.items[i].sellIn = this.items[i].sellIn - 1;
       }
-      if (this.items[i].sellIn < 0) {
+      if (this.dueDateReached(i)) {
         if (this.items[i].name != 'Aged Brie') {
           if (!this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
             if (this.isFresh(i)) {
@@ -59,6 +48,25 @@ export class GildedRose {
 
   private incresesValueOverLifetime(i: number) {
     return this.equalsItemName(i, 'Aged Brie') || this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert');
+  }
+
+  private handleBackstageTicketsItem(i: number) {
+    if (this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
+      if (this.items[i].sellIn < 11) {
+        if (this.items[i].quality < 50) {
+          this.increaseItemQuality(i);
+        }
+      }
+      if (this.items[i].sellIn < 6) {
+        if (this.items[i].quality < 50) {
+          this.increaseItemQuality(i);
+        }
+      }
+    }
+  }
+
+  private dueDateReached(i: number) {
+    return this.items[i].sellIn < 0;
   }
 
   private isFresh(i: number) {
