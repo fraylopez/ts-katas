@@ -19,7 +19,6 @@ export class GildedRose {
     if (item.isLegendary()) {
       return;
     }
-
     this.nonPerishedLife(item);
     item.decreaseTimeToSell();
     if (item.dueDateReached()) {
@@ -54,3 +53,14 @@ export class GildedRose {
     }
   }
 }
+
+
+/*
+
+|.........|...|....|
+10 ...........0....0  normal
+10 ......20..30....0  backstage
+10 ..........10...15  brie
+10 ..........10...10  legendary
+
+*/

@@ -53,9 +53,16 @@ export class Item {
       this.expire();
     }
     else {
+      this.decreaseQualityByOne();
+    }
+  }
+
+  private decreaseQualityByOne() {
+    if (this.quality > 0) {
       this.quality -= 1;
     }
   }
+
 
   private expire() {
     this.quality = 0;
