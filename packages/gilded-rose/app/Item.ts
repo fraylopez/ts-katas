@@ -50,7 +50,7 @@ export class Item {
     }
   }
 
-  private increaseItemQualityByOne() {
+  increaseItemQualityByOne() {
     if (this.quality < 50) {
       this.quality += 1;
     }
