@@ -36,7 +36,7 @@ export class GildedRose {
         this.items[i].sellIn = this.items[i].sellIn - 1;
       }
       if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != 'Aged Brie') {
+        if (!this.equalsItemName(i, 'Aged Brie')) {
           if (!this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
             if (this.isFresh(i)) {
               if (!this.equalsItemName(i, 'Sulfuras, Hand of Ragnaros')) {
@@ -71,6 +71,10 @@ export class GildedRose {
 
   private increaseItemQuality(i: number) {
     this.items[i].quality = this.items[i].quality + 1;
+  }
+
+  private isLegendary(i: number) {
+    return this.equalsItemName(i, 'Sulfuras, Hand of Ragnaros');
   }
 
 
