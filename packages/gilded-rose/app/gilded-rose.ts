@@ -22,7 +22,7 @@ export class GildedRose {
         }
       }
       if (!this.isLegendary(i)) {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+        this.decreaseTimeToSell(i);
       }
       if (this.dueDateReached(i)) {
         if (this.items[i].name != 'Aged Brie') {
@@ -44,6 +44,10 @@ export class GildedRose {
     }
 
     return this.items;
+  }
+
+  private decreaseTimeToSell(i: number) {
+    this.items[i].sellIn = this.items[i].sellIn - 1;
   }
 
   private expireItem(i: number) {
