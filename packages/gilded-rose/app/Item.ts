@@ -41,12 +41,6 @@ export class Item {
     }
     else {
       this.decreaseQuality();
-      if (this.name === 'Backstage passes to a TAFKAL80ETC concert') {
-        this.expire();
-      }
-      else {
-        this.quality -= 1;
-      }
     }
   }
 
@@ -57,7 +51,12 @@ export class Item {
   }
 
   private decreaseQuality() {
-
+    if (this.name === 'Backstage passes to a TAFKAL80ETC concert') {
+      this.expire();
+    }
+    else {
+      this.quality -= 1;
+    }
   }
 
   private expire() {
