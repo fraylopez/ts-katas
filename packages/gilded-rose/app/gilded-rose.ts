@@ -25,7 +25,11 @@ export class GildedRose {
         this.decreaseTimeToSell(i);
       }
       if (this.dueDateReached(i)) {
-        if (this.items[i].name != 'Aged Brie') {
+        if (this.nonPerishable(i)) {
+          if (this.items[i].quality < 50) {
+            this.increaseItemQuality(i);
+          }
+        } else {
           if (!this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
             if (this.isFresh(i)) {
               if (!this.isLegendary(i)) {
@@ -35,15 +39,15 @@ export class GildedRose {
           } else {
             this.expireItem(i);
           }
-        } else {
-          if (this.items[i].quality < 50) {
-            this.increaseItemQuality(i);
-          }
         }
       }
     }
 
     return this.items;
+  }
+
+  private nonPerishable(i: number) {
+    return this.items[i].name == 'Aged Brie';
   }
 
   private decreaseTimeToSell(i: number) {
