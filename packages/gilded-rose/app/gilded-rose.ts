@@ -10,35 +10,41 @@ export class GildedRose {
 
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      if (this.isLegendary(i)) {
-        continue;
-      }
-      if (!this.incresesValueOverLifetime(i)) {
-        if (this.isFresh(i)) {
-          this.decreaseItemQuality(i);
-        }
-      } else {
-        this.increaseItemQuality(i);
-        this.handleBackstageTicketsItem(i);
-      }
-      this.decreaseTimeToSell(i);
-      if (this.dueDateReached(i)) {
-        if (this.nonPerishable(i)) {
-          this.increaseItemQuality(i);
 
-        } else {
-          if (!this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
-            if (this.isFresh(i)) {
-              this.decreaseItemQuality(i);
-            }
-          } else {
-            this.expireItem(i);
-          }
-        }
-      }
+      this.updateItemQuality(i);
     }
 
     return this.items;
+  }
+
+  private updateItemQuality(i: number) {
+    if (this.isLegendary(i)) {
+      return;
+    }
+
+    if (!this.incresesValueOverLifetime(i)) {
+      if (this.isFresh(i)) {
+        this.decreaseItemQuality(i);
+      }
+    } else {
+      this.increaseItemQuality(i);
+      this.handleBackstageTicketsItem(i);
+    }
+    this.decreaseTimeToSell(i);
+    if (this.dueDateReached(i)) {
+      if (this.nonPerishable(i)) {
+        this.increaseItemQuality(i);
+
+      } else {
+        if (!this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert')) {
+          if (this.isFresh(i)) {
+            this.decreaseItemQuality(i);
+          }
+        } else {
+          this.expireItem(i);
+        }
+      }
+    }
   }
 
   private nonPerishable(i: number) {
