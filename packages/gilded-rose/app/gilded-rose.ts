@@ -30,15 +30,19 @@ export class GildedRose {
     }
     this.decreaseTimeToSell(i);
     if (this.dueDateReached(i)) {
-      if (this.incresesValueOverLifetime(i)) {
-        this.increaseItemQuality(i);
-      } else {
-        if (this.isFresh(i)) {
-          this.decreaseItemQuality(i);
-        } else {
-          this.expireItem(i);
-        }
-      }
+      this.afterDueDateReached(i);
+    }
+  }
+
+  private afterDueDateReached(i: number) {
+    if (!this.isFresh(i)) {
+      this.expireItem(i);
+      return;
+    }
+    if (this.incresesValueOverLifetime(i)) {
+      this.increaseItemQuality(i);
+    } else {
+      this.decreaseItemQuality(i);
     }
   }
 
