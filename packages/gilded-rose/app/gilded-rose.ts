@@ -33,12 +33,16 @@ export class GildedRose {
         if (this.isFresh(i)) {
           this.decreaseItemQuality(i);
         } else {
-          this.items[i].quality = this.items[i].quality - this.items[i].quality;
+          this.expireItem(i);
         }
       } else {
         this.increaseItemQuality(i);
       }
     }
+  }
+
+  private expireItem(i: number) {
+    this.items[i].quality = 0;
   }
 
   private incresesValueOverLifetime(i: number) {
