@@ -59,7 +59,7 @@ export class GildedRose {
   }
 
   private agesGracefully(i: number) {
-    return this.equalsItemName(i, 'Aged Brie') || this.equalsItemName(i, 'Backstage passes to a TAFKAL80ETC concert');
+    return this.items[i].agesGracefully();
   }
 
   private handleBackstageTicketsItem(i: number) {

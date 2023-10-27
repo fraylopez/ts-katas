@@ -28,4 +28,8 @@ export class Item {
   nonPerishable() {
     return this.name == 'Aged Brie';
   }
+  agesGracefully()
+  {
+    return this.nonPerishable() || this.name == 'Backstage passes to a TAFKAL80ETC concert';
+  }
 }
