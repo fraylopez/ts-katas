@@ -39,15 +39,12 @@ export class Item {
 
   private tickQuality() {
     if (this.agesGracefully()) {
-      this.ageGracefully();
+      this.increaseItemQualityByOne();
     }
     else {
       this.age();
     }
-  }
 
-  private ageGracefully() {
-    this.increaseItemQualityByOne();
     if (this.name === 'Backstage passes to a TAFKAL80ETC concert') {
       this.handleBackstageTicketsItem();
     }
