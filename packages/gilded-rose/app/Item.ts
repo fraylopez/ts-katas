@@ -34,50 +34,42 @@ export class Item {
 
   private tickQuality() {
     this.sellIn -= 1;
-    const delta = 1;
-
     if (this.isTicket()) {
       this.handleBackstageTicketsItem();
     }
     else if (this.isAgedBrie()) {
+      const delta = this.isSellInDateReached() ? 2 : 1;
       this.increaseItemQualityBy(delta);
     }
     else {
+      const delta = this.isSellInDateReached() ? 2 : 1;
       this.decreaseQuality(delta);
     }
-
-    if (this.isSellInDateReached()) {
-      if (this.isAgedBrie()) {
-        this.increaseItemQualityBy();
-      }
-      else {
-        this.decreaseQuality();
-      }
-    }
-
   }
 
-  private decreaseTimeToSell() {
-
-  }
   private increaseItemQualityBy(delta: number = 1) {
     this.quality = Math.min(50, this.quality + delta);
   }
 
   private handleBackstageTicketsItem() {
-    this.increaseItemQualityBy();
-    if (this.sellIn < 10) {
-      this.increaseItemQualityBy();
+    if (this.isSellInDateReached()) {
+      this.expire();
     }
-    if (this.sellIn < 5) {
+    else {
       this.increaseItemQualityBy();
+      if (this.sellIn < 10) {
+        this.increaseItemQualityBy();
+      }
+      if (this.sellIn < 5) {
+        this.increaseItemQualityBy();
+      }
     }
 
   }
 
   private decreaseQuality(delta: number = 1) {
     if (this.name === 'Backstage passes to a TAFKAL80ETC concert') {
-      this.expire();
+      // this.expire();
     }
     else {
       this.decreaseQualityBy(delta);
