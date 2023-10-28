@@ -33,7 +33,7 @@ export class Item {
     return this.name == 'Sulfuras, Hand of Ragnaros';
   }
 
-  tickDay() {
+  tickQuality() {
     if (this.agesGracefully()) {
       this.increaseItemQualityByOne();
       if (this.name === 'Backstage passes to a TAFKAL80ETC concert') {

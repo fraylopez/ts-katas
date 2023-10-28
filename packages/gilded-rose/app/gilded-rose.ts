@@ -19,7 +19,7 @@ export class GildedRose {
     if (item.isLegendary()) {
       return;
     }
-    item.tickDay();
+    item.tickQuality();
     item.decreaseTimeToSell();
     if (item.isSellInDateReached()) {
       this.handleSellInDateReached(item);
