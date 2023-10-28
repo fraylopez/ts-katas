@@ -12,6 +12,9 @@ export class Item {
 
   decreaseTimeToSell() {
     this.sellIn -= 1;
+    if (this.isSellInDateReached()) {
+      this.handleSellInDateReached();
+    }
   }
   isSellInDateReached() {
     return this.sellIn < 0;
@@ -58,6 +61,11 @@ export class Item {
   increaseItemQualityByOne() {
     if (this.quality < 50) {
       this.quality += 1;
+    }
+  }
+  private handleSellInDateReached() {
+    if (!this.isExpired()) {
+      this.age();
     }
   }
 
