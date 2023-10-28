@@ -21,12 +21,12 @@ export class GildedRose {
     }
     this.nonPerishedLife(item);
     item.decreaseTimeToSell();
-    if (item.isDueDateReached()) {
-      this.handleDueDateReached(item);
+    if (item.isSellInDateReached()) {
+      this.handleSellInDateReached(item);
     }
   }
 
-  private handleDueDateReached(item: Item) {
+  private handleSellInDateReached(item: Item) {
     if (!item.isExpired()) {
       item.age();
     }
