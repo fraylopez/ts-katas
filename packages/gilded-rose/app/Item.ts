@@ -21,10 +21,6 @@ export class Item {
     return this.sellIn < 0;
   }
 
-  private isExpired() {
-    return this.quality <= 0;
-  }
-
   private nonPerishable() {
     return this.name == 'Aged Brie';
   }
