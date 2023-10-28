@@ -33,21 +33,19 @@ export class Item {
   }
 
   private tickQuality() {
+    this.sellIn -= 1;
+    const delta = 1;
+
     if (this.isTicket()) {
       this.handleBackstageTicketsItem();
-      return;
     }
-    if (this.isAgedBrie()) {
-      this.increaseItemQualityBy();
-      return;
+    else if (this.isAgedBrie()) {
+      this.increaseItemQualityBy(delta);
     }
     else {
-      this.decreaseQuality();
+      this.decreaseQuality(delta);
     }
-  }
 
-  private decreaseTimeToSell() {
-    this.sellIn -= 1;
     if (this.isSellInDateReached()) {
       if (this.isAgedBrie()) {
         this.increaseItemQualityBy();
@@ -56,19 +54,22 @@ export class Item {
         this.decreaseQuality();
       }
     }
+
+  }
+
+  private decreaseTimeToSell() {
+
   }
   private increaseItemQualityBy(delta: number = 1) {
-    if (this.quality < 50) {
-      this.quality += delta;
-    }
+    this.quality = Math.min(50, this.quality + delta);
   }
 
   private handleBackstageTicketsItem() {
     this.increaseItemQualityBy();
-    if (this.sellIn < 11) {
+    if (this.sellIn < 10) {
       this.increaseItemQualityBy();
     }
-    if (this.sellIn < 6) {
+    if (this.sellIn < 5) {
       this.increaseItemQualityBy();
     }
 
@@ -85,9 +86,7 @@ export class Item {
   }
 
   private decreaseQualityBy(delta: number = 1) {
-    if (this.quality > 0) {
-      this.quality -= delta;
-    }
+    this.quality = Math.max(0, this.quality - delta);
   }
 
   private expire() {
