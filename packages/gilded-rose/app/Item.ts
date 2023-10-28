@@ -18,8 +18,7 @@ export class Item {
       this.handleBackstageTicketsItem();
     }
     else if (this.isAgedBrie()) {
-      const delta = this.isSellInDateReached() ? 2 : 1;
-      this.increaseItemQualityBy(delta);
+      this.handleAgeBrieItem();
     }
     else {
       const delta = this.isSellInDateReached() ? 2 : 1;
@@ -59,7 +58,15 @@ export class Item {
         this.increaseItemQualityBy();
       }
     }
+  }
 
+  private handleAgeBrieItem() {
+    if (this.isSellInDateReached()) {
+      this.increaseItemQualityBy(2);
+    }
+    else {
+      this.increaseItemQualityBy();
+    }
   }
 
   private decreaseQuality(delta: number = 1) {
