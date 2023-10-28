@@ -33,6 +33,18 @@ export class Item {
     return this.name == 'Sulfuras, Hand of Ragnaros';
   }
 
+  tickDay() {
+    if (this.agesGracefully()) {
+      this.increaseItemQualityByOne();
+      if (this.name === 'Backstage passes to a TAFKAL80ETC concert') {
+        this.handleBackstageTicketsItem();
+      }
+    }
+    else {
+      this.age();
+    }
+  }
+
   age() {
     if (this.nonPerishable()) {
       this.increaseItemQualityByOne();
@@ -40,11 +52,21 @@ export class Item {
     else {
       this.decreaseQuality();
     }
+
   }
 
   increaseItemQualityByOne() {
     if (this.quality < 50) {
       this.quality += 1;
+    }
+  }
+
+  private handleBackstageTicketsItem() {
+    if (this.sellIn < 11) {
+      this.increaseItemQualityByOne();
+    }
+    if (this.sellIn < 6) {
+      this.increaseItemQualityByOne();
     }
   }
 
@@ -54,6 +76,7 @@ export class Item {
     }
     else {
       this.decreaseQualityByOne();
+
     }
   }
 

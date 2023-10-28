@@ -19,7 +19,7 @@ export class GildedRose {
     if (item.isLegendary()) {
       return;
     }
-    this.nonPerishedLife(item);
+    item.tickDay();
     item.decreaseTimeToSell();
     if (item.isSellInDateReached()) {
       this.handleSellInDateReached(item);
@@ -29,15 +29,6 @@ export class GildedRose {
   private handleSellInDateReached(item: Item) {
     if (!item.isExpired()) {
       item.age();
-    }
-  }
-
-  private nonPerishedLife(item: Item) {
-    if (!item.agesGracefully()) {
-      item.age();
-    }
-    else {
-      this.ageGracefully(item);
     }
   }
   private ageGracefully(item: Item) {
