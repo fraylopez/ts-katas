@@ -22,7 +22,7 @@ export class Item {
     }
     else {
       const delta = this.isSellInDateReached() ? 2 : 1;
-      this.decreaseQuality(delta);
+      this.decreaseQualityBy(delta);
     }
   }
 
@@ -66,16 +66,6 @@ export class Item {
     }
     else {
       this.increaseItemQualityBy();
-    }
-  }
-
-  private decreaseQuality(delta: number = 1) {
-    if (this.name === 'Backstage passes to a TAFKAL80ETC concert') {
-      // this.expire();
-    }
-    else {
-      this.decreaseQualityBy(delta);
-
     }
   }
 
