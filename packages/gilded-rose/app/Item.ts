@@ -76,6 +76,4 @@ export class Item {
   private expire() {
     this.quality = 0;
   }
-
-
 }
