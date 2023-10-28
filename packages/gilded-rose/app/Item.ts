@@ -21,7 +21,10 @@ export class Item {
     return this.sellIn < 0;
   }
 
-  private nonPerishable() {
+  private isTicket() {
+    return this.name == 'Backstage passes to a TAFKAL80ETC concert';
+  }
+  private isAgedBrie() {
     return this.name == 'Aged Brie';
   }
 
@@ -30,11 +33,11 @@ export class Item {
   }
 
   private tickQuality() {
-    if (this.name === 'Backstage passes to a TAFKAL80ETC concert') {
+    if (this.isTicket()) {
       this.handleBackstageTicketsItem();
       return;
     }
-    if (this.nonPerishable()) {
+    if (this.isAgedBrie()) {
       this.increaseItemQualityByOne();
       return;
     }
@@ -42,7 +45,7 @@ export class Item {
   }
 
   private age() {
-    if (this.nonPerishable()) {
+    if (this.isAgedBrie()) {
       this.increaseItemQualityByOne();
     }
     else {
@@ -70,6 +73,7 @@ export class Item {
     if (this.sellIn < 6) {
       this.increaseItemQualityByOne();
     }
+
   }
 
   private decreaseQuality() {
