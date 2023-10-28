@@ -38,15 +38,8 @@ export class Item {
       return;
     }
     if (this.isAgedBrie()) {
-      this.increaseItemQualityByOne();
+      this.increaseItemQualityBy();
       return;
-    }
-    this.age();
-  }
-
-  private age() {
-    if (this.isAgedBrie()) {
-      this.increaseItemQualityByOne();
     }
     else {
       this.decreaseQuality();
@@ -56,22 +49,27 @@ export class Item {
   private decreaseTimeToSell() {
     this.sellIn -= 1;
     if (this.isSellInDateReached()) {
-      this.age();
+      if (this.isAgedBrie()) {
+        this.increaseItemQualityBy();
+      }
+      else {
+        this.decreaseQuality();
+      }
     }
   }
-  private increaseItemQualityByOne() {
+  private increaseItemQualityBy(delta: number = 1) {
     if (this.quality < 50) {
-      this.quality += 1;
+      this.quality += delta;
     }
   }
 
   private handleBackstageTicketsItem() {
-    this.increaseItemQualityByOne();
+    this.increaseItemQualityBy();
     if (this.sellIn < 11) {
-      this.increaseItemQualityByOne();
+      this.increaseItemQualityBy();
     }
     if (this.sellIn < 6) {
-      this.increaseItemQualityByOne();
+      this.increaseItemQualityBy();
     }
 
   }
