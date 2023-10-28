@@ -13,7 +13,7 @@ export class Item {
   decreaseTimeToSell() {
     this.sellIn -= 1;
   }
-  dueDateReached() {
+  isDueDateReached() {
     return this.sellIn < 0;
   }
 
