@@ -29,10 +29,6 @@ export class Item {
     return this.name == 'Aged Brie';
   }
 
-  private agesGracefully() {
-    return this.name == 'Aged Brie' || this.name == 'Backstage passes to a TAFKAL80ETC concert';
-  }
-
   private isLegendary() {
     return this.name == 'Sulfuras, Hand of Ragnaros';
   }
