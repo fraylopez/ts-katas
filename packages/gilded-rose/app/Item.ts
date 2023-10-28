@@ -54,13 +54,8 @@ export class Item {
       this.expire();
     }
     else {
-      this.increaseItemQualityBy();
-      if (this.sellIn < 10) {
-        this.increaseItemQualityBy();
-      }
-      if (this.sellIn < 5) {
-        this.increaseItemQualityBy();
-      }
+      const delta = this.sellIn < 5 ? 3 : this.sellIn < 10 ? 2 : 1;
+      this.increaseItemQualityBy(delta);
     }
   }
 
