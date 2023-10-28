@@ -42,12 +42,7 @@ export class Item {
       this.handleBackstageTicketsItem();
       return;
     }
-    if (this.agesGracefully()) {
-      this.age();
-    }
-    else {
-      this.age();
-    }
+    this.age();
   }
 
   private age() {
