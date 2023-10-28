@@ -21,9 +21,13 @@ export class Item {
       this.handleAgeBrieItem();
     }
     else {
-      const delta = this.isSellInDateReached() ? 2 : 1;
-      this.decreaseQualityBy(delta);
+      this.handleStandardItem();
     }
+  }
+
+  private handleStandardItem() {
+    const delta = this.isSellInDateReached() ? 2 : 1;
+    this.decreaseQualityBy(delta);
   }
 
   private isSellInDateReached() {
