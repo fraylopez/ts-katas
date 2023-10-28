@@ -38,15 +38,15 @@ export class Item {
   }
 
   private tickQuality() {
+    if (this.name === 'Backstage passes to a TAFKAL80ETC concert') {
+      this.handleBackstageTicketsItem();
+      return;
+    }
     if (this.agesGracefully()) {
-      this.increaseItemQualityByOne();
+      this.age();
     }
     else {
       this.age();
-    }
-
-    if (this.name === 'Backstage passes to a TAFKAL80ETC concert') {
-      this.handleBackstageTicketsItem();
     }
   }
 
@@ -66,9 +66,8 @@ export class Item {
     }
   }
 
-
-
   private handleBackstageTicketsItem() {
+    this.increaseItemQualityByOne();
     if (this.sellIn < 11) {
       this.increaseItemQualityByOne();
     }
