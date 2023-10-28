@@ -38,6 +38,10 @@ export class Item {
       this.handleBackstageTicketsItem();
       return;
     }
+    if (this.nonPerishable()) {
+      this.increaseItemQualityByOne();
+      return;
+    }
     this.age();
   }
 
@@ -48,9 +52,14 @@ export class Item {
     else {
       this.decreaseQuality();
     }
-
   }
 
+  private decreaseTimeToSell() {
+    this.sellIn -= 1;
+    if (this.isSellInDateReached()) {
+      this.age();
+    }
+  }
   private increaseItemQualityByOne() {
     if (this.quality < 50) {
       this.quality += 1;
@@ -87,16 +96,5 @@ export class Item {
     this.quality = 0;
   }
 
-  private decreaseTimeToSell() {
-    this.sellIn -= 1;
-    if (this.isSellInDateReached()) {
-      this.handleSellInDateReached();
-    }
-  }
 
-  private handleSellInDateReached() {
-    if (!this.isExpired()) {
-      this.age();
-    }
-  }
 }
