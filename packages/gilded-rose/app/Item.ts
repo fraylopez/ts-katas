@@ -13,8 +13,18 @@ export class Item {
     if (this.isLegendary()) {
       return;
     }
-    this.tickQuality();
-    this.decreaseTimeToSell();
+    this.sellIn -= 1;
+    if (this.isTicket()) {
+      this.handleBackstageTicketsItem();
+    }
+    else if (this.isAgedBrie()) {
+      const delta = this.isSellInDateReached() ? 2 : 1;
+      this.increaseItemQualityBy(delta);
+    }
+    else {
+      const delta = this.isSellInDateReached() ? 2 : 1;
+      this.decreaseQuality(delta);
+    }
   }
 
   private isSellInDateReached() {
@@ -30,21 +40,6 @@ export class Item {
 
   private isLegendary() {
     return this.name == 'Sulfuras, Hand of Ragnaros';
-  }
-
-  private tickQuality() {
-    this.sellIn -= 1;
-    if (this.isTicket()) {
-      this.handleBackstageTicketsItem();
-    }
-    else if (this.isAgedBrie()) {
-      const delta = this.isSellInDateReached() ? 2 : 1;
-      this.increaseItemQualityBy(delta);
-    }
-    else {
-      const delta = this.isSellInDateReached() ? 2 : 1;
-      this.decreaseQuality(delta);
-    }
   }
 
   private increaseItemQualityBy(delta: number = 1) {
