@@ -9,34 +9,35 @@ export class Item {
     this.sellIn = sellIn;
     this.quality = quality;
   }
-
-  decreaseTimeToSell() {
-    this.sellIn -= 1;
-    if (this.isSellInDateReached()) {
-      this.handleSellInDateReached();
+  tick() {
+    if (this.isLegendary()) {
+      return;
     }
+    this.tickQuality();
+    this.decreaseTimeToSell();
   }
-  isSellInDateReached() {
+
+  private isSellInDateReached() {
     return this.sellIn < 0;
   }
 
-  isExpired() {
+  private isExpired() {
     return this.quality <= 0;
   }
 
-  nonPerishable() {
+  private nonPerishable() {
     return this.name == 'Aged Brie';
   }
 
-  agesGracefully() {
+  private agesGracefully() {
     return this.name == 'Aged Brie' || this.name == 'Backstage passes to a TAFKAL80ETC concert';
   }
 
-  isLegendary() {
+  private isLegendary() {
     return this.name == 'Sulfuras, Hand of Ragnaros';
   }
 
-  tickQuality() {
+  private tickQuality() {
     if (this.agesGracefully()) {
       this.increaseItemQualityByOne();
       if (this.name === 'Backstage passes to a TAFKAL80ETC concert') {
@@ -48,7 +49,7 @@ export class Item {
     }
   }
 
-  age() {
+  private age() {
     if (this.nonPerishable()) {
       this.increaseItemQualityByOne();
     }
@@ -58,16 +59,13 @@ export class Item {
 
   }
 
-  increaseItemQualityByOne() {
+  private increaseItemQualityByOne() {
     if (this.quality < 50) {
       this.quality += 1;
     }
   }
-  private handleSellInDateReached() {
-    if (!this.isExpired()) {
-      this.age();
-    }
-  }
+
+
 
   private handleBackstageTicketsItem() {
     if (this.sellIn < 11) {
@@ -94,8 +92,20 @@ export class Item {
     }
   }
 
-
   private expire() {
     this.quality = 0;
+  }
+
+  private decreaseTimeToSell() {
+    this.sellIn -= 1;
+    if (this.isSellInDateReached()) {
+      this.handleSellInDateReached();
+    }
+  }
+
+  private handleSellInDateReached() {
+    if (!this.isExpired()) {
+      this.age();
+    }
   }
 }

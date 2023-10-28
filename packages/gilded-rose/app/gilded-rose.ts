@@ -9,18 +9,10 @@ export class GildedRose {
 
   tickDay() {
     for (const item of this.items) {
-      this.tickItem(item);
+      item.tick();
     }
 
     return this.items;
-  }
-
-  private tickItem(item: Item) {
-    if (item.isLegendary()) {
-      return;
-    }
-    item.tickQuality();
-    item.decreaseTimeToSell();
   }
 }
 
