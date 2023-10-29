@@ -1,7 +1,7 @@
 import assert from "assert";
 
 export class GameOfLife {
-    constructor(board: boolean[][]) {
+    constructor(private readonly board: boolean[][]) {
 
     }
 
