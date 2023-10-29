@@ -44,7 +44,7 @@ describe(`${GameOfLife.name}`, () => {
       .should.eql(GameOfLife.empty());
   });
 
-  it('overpopulation with neighbours', () => {
+  it('overpopulation with neighbours all die', () => {
     const board = [
       [1, 1, 1],
       [1, 1, 1],
@@ -54,6 +54,20 @@ describe(`${GameOfLife.name}`, () => {
       .nextGen()
       .should.eql(GameOfLife.empty());
   });
+
+  it('overpopulation with neighbours', () => {
+    const board = [
+      [1, 0, 1],
+      [0, 1, 0],
+      [1, 0, 1],
+    ];
+    GameOfLife.from(board)
+      .nextGen()
+      .should.eql(GameOfLife.empty());
+  });
+
+
+
 });
 
 // underpopulation
