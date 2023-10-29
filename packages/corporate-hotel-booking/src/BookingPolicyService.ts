@@ -4,6 +4,6 @@
 
   setEmployeePolicy( employeeId,  roomTypes){}
 
-  isBookingAllowed( employeeId,  roomType) : boolean {return true;}
+  isBookingAllowed( employeeId,  roomType) : boolean {return false;}
 
 }

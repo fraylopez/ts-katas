@@ -1,6 +1,10 @@
 import assert from "assert";
+import {BookingPolicyService} from "./BookingPolicyService";
 
 export class CompanyService {
+  constructor(private readonly policies?: BookingPolicyService) {
+    
+  }
 
   private employeeId: Map<string, string[]> = new Map();
   addEmployee(companyId: string, employeeId: string) {
