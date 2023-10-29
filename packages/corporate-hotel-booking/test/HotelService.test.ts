@@ -1,5 +1,5 @@
-import {expect} from "chai";
-import {HotelService} from "./HotelService";
+import { expect } from "chai";
+import { HotelService } from "../src/HotelService";
 
 describe('hotel service', () => {
     it('if no hotels, should add an hotel without fail', () => {
@@ -16,7 +16,7 @@ describe('hotel service', () => {
         const hotelService = new HotelService();
         hotelService.addHotel("1", "thisHotel");
         expect(hotelService.findHotelBy("1"))
-            .to.deep.equal({id: "1", name: "thisHotel", rooms: new Map()});
+            .to.deep.equal({ id: "1", name: "thisHotel", rooms: new Map() });
     });
 
     it("should add rooms to an hotel", () => {

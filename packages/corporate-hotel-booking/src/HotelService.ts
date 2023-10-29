@@ -16,7 +16,7 @@ export class HotelService {
     setRoom(hotelId: string, numRooms: number, roomType: string) {
         const hotel = this.findHotelBy(hotelId);
         assert(hotel, "Hotel does not exist");
-        
+
         hotel!.rooms.set(roomType, numRooms);
     }
 }
