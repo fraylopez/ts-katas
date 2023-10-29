@@ -1,19 +1,13 @@
 {
-  "name": "ts-boilerplate-node",
+  "name": "corporate-hotel-booking",
   "version": "0.0.1",
-  "description": "A boilerplate for typescript node projects with mocha and chai",
+  "description": "",
   "main": "src/index.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
     "test": "mocha"
   },
-  "keywords": [
-    "typescript",
-    "boilerplate",
-    "node",
-    "mocha",
-    "chai"
-  ],
+  "keywords": [],
   "author": "Victor Moreno",
   "license": "ISC",
   "devDependencies": {
