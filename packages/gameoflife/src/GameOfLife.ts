@@ -32,4 +32,8 @@ export class GameOfLife {
     nextGen(): GameOfLife {
         return GameOfLife.empty();
     }
+
+    private aliveNeighboursCount(x: number, y: number): number {
+
+    }
 }

@@ -66,6 +66,22 @@ describe(`${GameOfLife.name}`, () => {
       .should.eql(GameOfLife.empty());
   });
 
+  it('reproduction', () => {
+    const board = [
+      [1, 0, 1],
+      [0, 0, 0],
+      [0, 0, 1],
+    ];
+    GameOfLife.from(board)
+      .nextGen()
+      .should.eql(GameOfLife.from([
+        [0, 0, 0],
+        [0, 1, 0],
+        [0, 0, 0],
+      ]));
+
+  });
+
 
 
 });
