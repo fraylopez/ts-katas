@@ -16,6 +16,15 @@ describe('hotel service', () => {
         const hotelService = new HotelService();
         hotelService.addHotel("1", "thisHotel");
         expect(hotelService.findHotelBy("1"))
-            .to.deep.equal({ id: "1", name: "thisHotel" });
+            .to.deep.equal({ id: "1", name: "thisHotel", rooms: [] });
     });
+
+    it("should add rooms to an hotel", () => {
+        const hotelService = new HotelService();
+        hotelService.addHotel("1", "thisHotel");
+        hotelService.setRoom("1", 1, "suite");
+        expect(hotelService.findHotelBy("1")!.rooms).length.greaterThan(0);
+    });
+
+
 });
