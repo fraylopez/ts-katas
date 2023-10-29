@@ -27,4 +27,11 @@ describe(`${CompanyService.name}`, () => {
     expect(() => service.addEmployee("otherCompanyId", "employeeId2"))
       .throw();
   });
+
+  it('should delete an employee', () => {
+    const service = new CompanyService();
+    service.addEmployee("companyId", "employeeId");
+    service.deleteEmployee("companyId", "employeeId");
+    expect(service.employeeExists("employeeId")).false;
+  });
 });
