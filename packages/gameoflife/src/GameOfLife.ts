@@ -12,6 +12,4 @@ export class GameOfLife {
     nextGen(): GameOfLife {
         return GameOfLife.emptyBoard();
     }
-
-
 }

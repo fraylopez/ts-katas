@@ -7,10 +7,10 @@ describe(`${GameOfLife.name}`, () => {
     GameOfLife.emptyBoard();
   });
 
-  it('asdas', () => {
+  it('empty does not change', () => {
     GameOfLife.emptyBoard()
       .nextGen()
-      .should.equal(GameOfLife.emptyBoard());
+      .should.eql(GameOfLife.emptyBoard());
   });
 });
 
