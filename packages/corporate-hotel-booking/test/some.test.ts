@@ -1,5 +1,5 @@
-import {expect} from "chai";
-import {HotelService} from "./HotelService";
+import { expect } from "chai";
+import { HotelService } from "./HotelService";
 
 describe('hotel service', () => {
     it('if no hotels, should add an hotel without fail', () => {
@@ -10,5 +10,12 @@ describe('hotel service', () => {
         const hotelService = new HotelService();
         hotelService.addHotel("1", "thisHotel");
         expect(() => hotelService.addHotel("1", "thatHotel")).to.throw();
+    });
+
+    it("should return the hotel with the given id", () => {
+        const hotelService = new HotelService();
+        hotelService.addHotel("1", "thisHotel");
+        expect(hotelService.findHotelBy("1"))
+            .to.deep.equal({ id: "1", name: "thisHotel" });
     });
 });
