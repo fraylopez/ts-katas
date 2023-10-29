@@ -92,3 +92,5 @@ yarn-error.log*
 tmp/
 .vercel
 banking-ingress.yaml
+
+.code-workspace
