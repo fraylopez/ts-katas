@@ -15,7 +15,7 @@ describe(`${GameOfLife.name}`, () => {
 
   it('single cell dies', () => {
     const board = [
-      [0, 0, 0], 
+      [0, 0, 0],
       [0, 1, 0],
       [0, 0, 0],
     ];
@@ -34,10 +34,21 @@ describe(`${GameOfLife.name}`, () => {
       .nextGen()
       .should.not.eql(GameOfLife.from(board));
   });
-  
-  it('underpopulation with neighbours' , () => {
+
+  it('underpopulation with neighbours', () => {
     const board = [
       [1, 1],
+    ];
+    GameOfLife.from(board)
+      .nextGen()
+      .should.eql(GameOfLife.empty());
+  });
+
+  it('overpopulation with neighbours', () => {
+    const board = [
+      [1, 1, 1],
+      [1, 1, 1],
+      [1, 1, 1],
     ];
     GameOfLife.from(board)
       .nextGen()
