@@ -7,7 +7,7 @@ export class HotelService {
 
     addHotel(id: string, name: string) {
         assert(!this.hotels.find(hotel => hotel.id === id), "Hotel already exists");
-        this.hotels.push({ id, name, rooms: [] });
+        this.hotels.push({ id, name, rooms: new Map() });
     }
 
     findHotelBy(hotelId: string) {
@@ -15,7 +15,9 @@ export class HotelService {
     }
     setRoom(hotelId: string, numRooms: number, roomType: string) {
         const hotel = this.findHotelBy(hotelId);
-        hotel!.rooms.push({ number: numRooms, type: roomType });
+        assert(hotel, "Hotel does not exist");
+        
+        hotel!.rooms.set(roomType, numRooms);
     }
 }
 
