@@ -34,11 +34,17 @@ describe(`${GameOfLife.name}`, () => {
       .nextGen()
       .should.not.eql(GameOfLife.from(board));
   });
+  
+  it('underpopulation with neighbours' , () => {
+    const board = [
+      [1, 1],
+    ];
+    GameOfLife.from(board)
+      .nextGen()
+      .should.eql(GameOfLife.empty());
+  });
 });
 
-// cells
-// alive or dead
-// finite board
 // underpopulation
 // overpopulation
 // reproduction
