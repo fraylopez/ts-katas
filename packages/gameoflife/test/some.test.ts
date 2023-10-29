@@ -15,9 +15,9 @@ describe(`${GameOfLife.name}`, () => {
 
   it('single cell dies', () => {
     const board = [
-      [false, false, false],
-      [false, true, false],
-      [false, false, false],
+      [0, 0, 0], 
+      [0, 1, 0],
+      [0, 0, 0],
     ];
     GameOfLife.from(board)
       .nextGen()
@@ -26,9 +26,9 @@ describe(`${GameOfLife.name}`, () => {
 
   it('change', () => {
     const board = [
-      [false, false, false],
-      [false, true, false],
-      [false, false, false],
+      [0, 0, 0],
+      [0, 1, 0],
+      [0, 0, 0],
     ];
     GameOfLife.from(board)
       .nextGen()

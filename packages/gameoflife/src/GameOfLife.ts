@@ -16,7 +16,7 @@ export class GameOfLife {
         return new GameOfLife([], 0, 0);
     }
 
-    static from(board: boolean[][]) {
+    static from(board: number[][]) {
         const aliveCells: AliveCell[] = [];
         for (let y = 0; y < board.length; y++) {
             const row = board[y];
