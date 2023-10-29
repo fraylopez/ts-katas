@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { CompanyService } from "../src/CompanyService";
 
-describe('Commmsadasd', () => {
+describe(`${CompanyService.name}`, () => {
   it('add an employee to a company', () => {
     new CompanyService()
       .addEmployee("companyId", "employeeId");
