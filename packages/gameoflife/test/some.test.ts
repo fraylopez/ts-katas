@@ -12,6 +12,17 @@ describe(`${GameOfLife.name}`, () => {
       .nextGen()
       .should.eql(GameOfLife.emptyBoard());
   });
+  
+    it('single cell dies', () => {
+      const board = [
+        [false, false, false],
+        [false, true, false],
+        [false, false, false],
+      ];
+      new GameOfLife(board)
+        .nextGen()
+        .should.eql(GameOfLife.emptyBoard());
+    });
 });
 
 // cells
