@@ -1,8 +1,11 @@
 import assert from "assert";
 import {BookingPolicyService} from "./BookingPolicyService";
+import {BookingService} from "./BookingService";
 
 export class CompanyService {
-  constructor(private readonly policies?: BookingPolicyService) {
+  constructor(
+      private readonly policies?: BookingPolicyService,
+      private readonly bookings?: BookingService) {
     
   }
 

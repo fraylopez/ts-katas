@@ -1,4 +1,5 @@
-﻿export class BookingPolicyService {
+﻿
+export class BookingPolicyService {
   
   setCompanyPolicy(companyId,  roomTypes){}
 
