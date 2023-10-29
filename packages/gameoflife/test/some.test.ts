@@ -5,3 +5,12 @@ describe('dummy test', () => {
     expect(true).to.be.false;
   });
 });
+
+// cells
+// alive or dead
+// finite board
+// underpopulation
+// overpopulation
+// reproduction
+// surviving
+// cells out of bounds die
