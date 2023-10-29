@@ -1,9 +1,17 @@
-class GameOfLife{
-    constructor(board : boolean[][]){
-        
+import assert from "assert";
+
+export class GameOfLife {
+    constructor(board: boolean[][]) {
+
     }
-    
-    nextGen() {
-        
+
+    static emptyBoard() {
+        return new GameOfLife([]);
     }
+
+    nextGen(): GameOfLife {
+        return GameOfLife.emptyBoard();
+    }
+
+
 }

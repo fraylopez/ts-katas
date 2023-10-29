@@ -5,8 +5,8 @@
 			"path": "."
 		},
 		{
-			"name": "📦 gilded-rose-kata",
-			"path": "packages/gilded-rose"
+			"name": "📦 game-of-life",
+			"path": "packages/gameoflife"
 		}
 	],
 	"settings": {}

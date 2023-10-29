@@ -1,8 +1,16 @@
-import { expect } from "chai";
+import { expect, should } from "chai";
+import { GameOfLife } from "../src/GameOfLife";
 
-describe('dummy test', () => {
-  it('should fail', () => {
-    expect(true).to.be.false;
+should();
+describe(`${GameOfLife.name}`, () => {
+  it('should create a game', () => {
+    GameOfLife.emptyBoard();
+  });
+
+  it('asdas', () => {
+    GameOfLife.emptyBoard()
+      .nextGen()
+      .should.equal(GameOfLife.emptyBoard());
   });
 });
 
