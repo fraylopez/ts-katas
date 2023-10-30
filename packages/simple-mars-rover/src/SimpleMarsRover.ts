@@ -12,7 +12,6 @@ export class SimpleMarsRover {
       this.applyCommand(commands[i]);
     }
     return `${this.x}:${this.y}:${this.orientation}`;
-
   }
 
   private applyCommand(command: string) {
@@ -23,9 +22,29 @@ export class SimpleMarsRover {
       this.turnLeft();
     }
     if (command === 'M') {
-      this.y = this.y + 1;
+      this.move();
     }
   }
+  private move() {
+    if (this.orientation === 'N') {
+      this.moveDelta(0, 1);
+    }
+    if (this.orientation === 'E') {
+      this.moveDelta(1, 0);
+    }
+    if (this.orientation === 'S') {
+      this.moveDelta(0, -1);
+    }
+    if (this.orientation === 'W') {
+      this.moveDelta(-1, 0);
+    }
+  }
+
+  private moveDelta(x: number, y: number) {
+    this.x = this.x + x;
+    this.y = this.y + y;
+  }
+
   private turnLeft() {
     this.turn(['N', 'W', 'S', 'E']);
   }

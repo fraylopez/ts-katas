@@ -33,6 +33,11 @@ describe("SimpleMarsRover", () => {
     expect(rover.run('LL')).equals('0:0:S');
   });
 
+  it("should turn right and move", () => {
+    const rover = new SimpleMarsRover();
+    expect(rover.run('RM')).equals('1:0:E');
+  });
+
 });
 
 
