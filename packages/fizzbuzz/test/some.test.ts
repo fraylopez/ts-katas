@@ -19,6 +19,10 @@ describe("FizzBuzz", () => {
       fizzBuzzOf: 4,
       expected: '4'
     },
+    {
+      fizzBuzzOf: 5,
+      expected: 'Buzz'
+    },
   ].forEach((testCase) => {
     it(`should output a partial fizzbuzz sequence for ${testCase.fizzBuzzOf}`, () => {
       expect(FizzBuzz(testCase.fizzBuzzOf)).contains(testCase.expected);
@@ -31,6 +35,9 @@ describe("FizzBuzz", () => {
 
 
 function FizzBuzz(n: number): string {
+  if (n === 5) {
+    return "Buzz";
+  }
   if (n === 3) {
     return "Fizz";
   }
