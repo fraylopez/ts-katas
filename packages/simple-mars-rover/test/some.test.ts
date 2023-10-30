@@ -27,6 +27,11 @@ describe("SimpleMarsRover", () => {
     expect(rover.run('MM')).equals('0:2:N');
   });
 
+  it("should turn left twice", () => {
+    const rover = new SimpleMarsRover();
+    expect(rover.run('LL')).equals('0:0:S');
+  });
+
 });
 
 
@@ -35,13 +40,36 @@ class SimpleMarsRover {
     if (commands === 'R') {
       return '0:0:E';
     }
-    if (commands === 'L') {
-      return '0:0:W';
+    if (commands.indexOf('L') > -1) {
+      return `0:0:${this.turnLeftTimes(this.findNumberOfCommandsOfType(commands, 'L'))}`;
     }
     if (commands.indexOf('M') > -1) {
       return `0:${commands.length}:N`;
     }
     return '0:0:N';
+  }
+
+  private turnLeftTimes(times: number) {
+    let orientation = 'N';
+    for (let i = 0; i < times; i++) {
+      orientation = this.turnLeft(orientation);
+    }
+    return orientation;
+  }
+
+  private turnLeft(initialOrientation: string) {
+    const directionsLeft = ['N', 'W', 'S', 'E'];
+    const currentDirectionIndex = directionsLeft.indexOf(initialOrientation);
+    if (currentDirectionIndex === 0) {
+      return 'W';
+    }
+    return `${directionsLeft[currentDirectionIndex + 1]}`;
+  }
+
+
+
+  private findNumberOfCommandsOfType(commands: string, type: string) {
+    return Array.from(commands).filter(command => command === type).length;
   }
 }
 
