@@ -86,10 +86,9 @@ class FizzBuzz {
   }
 
   private parse(n: number): string {
-    const isDivisibleBy = (n, d) => n % d === 0;
     let result = "";
     for (let match in this.matches) {
-      if (isDivisibleBy(n, match)) {
+      if (this.isDivisibleBy(n, match)) {
         result += this.matches[match];
       }
     }
@@ -97,5 +96,9 @@ class FizzBuzz {
       return n.toString();
     }
     return result;
+  }
+
+  private isDivisibleBy(n, d) {
+    return n % d === 0;
   }
 }
