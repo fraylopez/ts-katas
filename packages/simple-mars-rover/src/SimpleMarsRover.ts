@@ -8,7 +8,7 @@ export class SimpleMarsRover {
     this.orientation = 'N';
   }
   run(commands: string): string {
-    if (commands === 'R') {
+    if (commands.indexOf('R') > -1) {
       return '0:0:E';
     }
     if (commands.indexOf('L') > -1) {
