@@ -36,12 +36,20 @@ describe("SimpleMarsRover", () => {
 
 
 class SimpleMarsRover {
+  private x: number;
+  private y: number;
+  private orientation: string;
+  constructor() {
+    this.x = 0;
+    this.y = 0;
+    this.orientation = 'N';
+  }
   run(commands: string): string {
     if (commands === 'R') {
       return '0:0:E';
     }
     if (commands.indexOf('L') > -1) {
-      return `0:0:${this.turnLeftTimes(this.findNumberOfCommandsOfType(commands, 'L'))}`;
+      return `${this.x}:${this.y}:${this.turnLeftTimes(this.findNumberOfCommandsOfType(commands, 'L'))}`;
     }
     if (commands.indexOf('M') > -1) {
       return `0:${commands.length}:N`;
@@ -50,16 +58,15 @@ class SimpleMarsRover {
   }
 
   private turnLeftTimes(times: number) {
-    let orientation = 'N';
     for (let i = 0; i < times; i++) {
-      orientation = this.turnLeft(orientation);
+      this.orientation = this.turnLeft();
     }
-    return orientation;
+    return this.orientation;
   }
 
-  private turnLeft(initialOrientation: string) {
+  private turnLeft() {
     const directionsLeft = ['N', 'W', 'S', 'E'];
-    const currentDirectionIndex = directionsLeft.indexOf(initialOrientation);
+    const currentDirectionIndex = directionsLeft.indexOf(this.orientation);
     if (currentDirectionIndex === 0) {
       return 'W';
     }
