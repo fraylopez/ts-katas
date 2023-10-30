@@ -63,9 +63,6 @@ describe("FizzBuzz", () => {
       expect(new FizzBuzz().run(testCase.fizzBuzzOf)).contains(testCase.expected);
     });
   });
-
-
-
 });
 
 class FizzBuzz {
