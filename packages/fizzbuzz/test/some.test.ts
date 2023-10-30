@@ -41,8 +41,5 @@ function FizzBuzz(n: number): string {
   if (n === 3) {
     return "Fizz";
   }
-  if (n === 2) {
-    return "2";
-  }
   return n.toString();
 }
