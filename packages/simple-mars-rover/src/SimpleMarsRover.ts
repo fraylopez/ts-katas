@@ -37,22 +37,14 @@ export class SimpleMarsRover {
   private turnLeft() {
     const directionsLeft = ['N', 'W', 'S', 'E'];
     const currentDirectionIndex = directionsLeft.indexOf(this.orientation);
-    if (currentDirectionIndex === 0) {
-      return 'W';
-    }
     return `${directionsLeft[currentDirectionIndex + 1]}`;
   }
 
   private turnRight() {
     const directionsLeft = ['N', 'E', 'S', 'W'];
     const currentDirectionIndex = directionsLeft.indexOf(this.orientation);
-    if (currentDirectionIndex === 0) {
-      return 'E';
-    }
     return `${directionsLeft[currentDirectionIndex + 1]}`;
   }
-
-
 
   private findNumberOfCommandsOfType(commands: string, type: string) {
     return Array.from(commands).filter(command => command === type).length;
