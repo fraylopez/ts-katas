@@ -69,12 +69,17 @@ describe("FizzBuzz", () => {
 });
 
 class FizzBuzz {
+  private matches: { [key: number]: string; };
   constructor(
-    private readonly fizz = 3,
-    private readonly buzz = 5
+    fizz: number = 3,
+    buzz: number = 5
   ) {
-
+    this.matches = {
+      [fizz]: "Fizz",
+      [buzz]: "Buzz",
+    };
   }
+
   run(n: number): string {
     const result: string[] = [];
     for (let i = 1; i <= n; i++) {
@@ -86,11 +91,10 @@ class FizzBuzz {
   private parse(n: number): string {
     const isDivisibleBy = (n, d) => n % d === 0;
     let result = "";
-    if (isDivisibleBy(n, this.fizz)) {
-      result += "Fizz";
-    }
-    if (isDivisibleBy(n, this.buzz)) {
-      result += "Buzz";
+    for (let match in this.matches) {
+      if (isDivisibleBy(n, match)) {
+        result += this.matches[match];
+      }
     }
     if (result === "") {
       return n.toString();
