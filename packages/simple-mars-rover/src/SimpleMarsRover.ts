@@ -2,7 +2,10 @@ export class SimpleMarsRover {
   private x: number;
   private y: number;
   private orientation: string;
-  constructor() {
+  constructor(
+    private readonly maxX: number = 9,
+    private readonly maxY: number = 9,
+  ) {
     this.x = 0;
     this.y = 0;
     this.orientation = 'N';
@@ -43,15 +46,15 @@ export class SimpleMarsRover {
     this.x = this.x + x;
     this.y = this.y + y;
     if (this.x < 0) {
-      this.x = 9;
+      this.x = this.maxX;
     }
-    if (this.x > 9) {
+    if (this.x > this.maxY) {
       this.x = 0;
     }
     if (this.y < 0) {
-      this.y = 9;
+      this.y = this.maxY;
     }
-    if (this.y > 9) {
+    if (this.y > this.maxY) {
       this.y = 0;
     }
   }
