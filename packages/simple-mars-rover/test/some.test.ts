@@ -3,14 +3,32 @@ import { expect, should } from "chai";
 should();
 describe("SimpleMarsRover", () => {
   it('should start at 0,0', () => {
-    expect(new SimpleMarsRover().run('')).contains('0,0');
+    expect(new SimpleMarsRover().run('')).contains('0:0');
+  });
+
+  it("should start facing north", () => {
+    expect(new SimpleMarsRover().run('')).equals('0:0:N');
+  });
+
+  it("should turn left", () => {
+    expect(new SimpleMarsRover().run('L')).equals('0:0:W');
+  });
+
+  it("should turn right", () => {
+    expect(new SimpleMarsRover().run('R')).equals('0:0:E');
   });
 });
 
 
 class SimpleMarsRover {
   run(commands: string): string {
-    return '0,0';
+    if (commands === 'R') {
+      return '0:0:E';
+    }
+    if (commands === 'L') {
+      return '0:0:W';
+    }
+    return '0:0:N';
   }
 }
 
