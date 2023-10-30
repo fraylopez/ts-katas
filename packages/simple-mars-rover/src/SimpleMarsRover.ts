@@ -9,15 +9,15 @@ export class SimpleMarsRover {
   }
   run(commands: string): string {
     if (commands.indexOf('R') > -1) {
-      return `${this.x}:${this.y}:${this.turnRightTimes(this.findNumberOfCommandsOfType(commands, 'R'))}`;
+      this.turnRightTimes(this.findNumberOfCommandsOfType(commands, 'R'));
     }
     if (commands.indexOf('L') > -1) {
-      return `${this.x}:${this.y}:${this.turnLeftTimes(this.findNumberOfCommandsOfType(commands, 'L'))}`;
+      this.turnLeftTimes(this.findNumberOfCommandsOfType(commands, 'L'));
     }
     if (commands.indexOf('M') > -1) {
-      return `0:${commands.length}:N`;
+      this.y = this.y + this.findNumberOfCommandsOfType(commands, 'M');
     }
-    return '0:0:N';
+    return `${this.x}:${this.y}:${this.orientation}`;
   }
 
   private turnLeftTimes(times: number) {
@@ -35,15 +35,16 @@ export class SimpleMarsRover {
   }
 
   private turnLeft() {
-    const directionsLeft = ['N', 'W', 'S', 'E'];
-    const currentDirectionIndex = directionsLeft.indexOf(this.orientation);
-    return `${directionsLeft[currentDirectionIndex + 1]}`;
+    return this.turn(['N', 'W', 'S', 'E']);
   }
 
   private turnRight() {
-    const directionsLeft = ['N', 'E', 'S', 'W'];
-    const currentDirectionIndex = directionsLeft.indexOf(this.orientation);
-    return `${directionsLeft[currentDirectionIndex + 1]}`;
+    return this.turn(['N', 'E', 'S', 'W']);
+  }
+
+  private turn(directions: string[]) {
+    const currentDirectionIndex = directions.indexOf(this.orientation);
+    return `${directions[currentDirectionIndex + 1]}`;
   }
 
   private findNumberOfCommandsOfType(commands: string, type: string) {
