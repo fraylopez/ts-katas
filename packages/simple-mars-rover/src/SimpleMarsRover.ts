@@ -9,7 +9,7 @@ export class SimpleMarsRover {
   }
   run(commands: string): string {
     if (commands.indexOf('R') > -1) {
-      return '0:0:E';
+      return `${this.x}:${this.y}:${this.turnRightTimes(this.findNumberOfCommandsOfType(commands, 'R'))}`;
     }
     if (commands.indexOf('L') > -1) {
       return `${this.x}:${this.y}:${this.turnLeftTimes(this.findNumberOfCommandsOfType(commands, 'L'))}`;
@@ -27,11 +27,27 @@ export class SimpleMarsRover {
     return this.orientation;
   }
 
+  private turnRightTimes(times: number) {
+    for (let i = 0; i < times; i++) {
+      this.orientation = this.turnRight();
+    }
+    return this.orientation;
+  }
+
   private turnLeft() {
     const directionsLeft = ['N', 'W', 'S', 'E'];
     const currentDirectionIndex = directionsLeft.indexOf(this.orientation);
     if (currentDirectionIndex === 0) {
       return 'W';
+    }
+    return `${directionsLeft[currentDirectionIndex + 1]}`;
+  }
+
+  private turnRight() {
+    const directionsLeft = ['N', 'E', 'S', 'W'];
+    const currentDirectionIndex = directionsLeft.indexOf(this.orientation);
+    if (currentDirectionIndex === 0) {
+      return 'E';
     }
     return `${directionsLeft[currentDirectionIndex + 1]}`;
   }
