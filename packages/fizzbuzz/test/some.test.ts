@@ -45,6 +45,18 @@ describe("FizzBuzz", () => {
       fizzBuzzOf: 2,
       expected: '1, 2'
     },
+    {
+      fizzBuzzOf: 3,
+      expected: '1, 2, Fizz'
+    },
+    {
+      fizzBuzzOf: 5,
+      expected: '1, 2, Fizz, 4, Buzz'
+    },
+    {
+      fizzBuzzOf: 15,
+      expected: '1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz'
+    },
 
   ].forEach((testCase) => {
     it(`should output a full fizzbuzz sequence for ${testCase.fizzBuzzOf}`, () => {
