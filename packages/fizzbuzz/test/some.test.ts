@@ -40,19 +40,44 @@ describe("FizzBuzz", () => {
       expect(new FizzBuzz().run(testCase.fizzBuzzOf)).contains(testCase.expected);
     });
   });
+  [
+    {
+      fizzBuzzOf: 2,
+      expected: '1, 2'
+    },
+
+  ].forEach((testCase) => {
+    it(`should output a full fizzbuzz sequence for ${testCase.fizzBuzzOf}`, () => {
+      expect(new FizzBuzz().run(testCase.fizzBuzzOf)).contains(testCase.expected);
+    });
+  });
 
 
 
 });
 
 class FizzBuzz {
+  constructor(
+    private readonly fizz = 3,
+    private readonly buzz = 5
+  ) {
+
+  }
   run(n: number): string {
+    const result: string[] = [];
+    for (let i = 1; i <= n; i++) {
+      result.push(this.parse(i));
+    }
+    return result.join(", ");
+  }
+
+  private parse(n: number): string {
     const isDivisibleBy = (n, d) => n % d === 0;
     let result = "";
-    if (isDivisibleBy(n, 3)) {
+    if (isDivisibleBy(n, this.fizz)) {
       result += "Fizz";
     }
-    if (isDivisibleBy(n, 5)) {
+    if (isDivisibleBy(n, this.buzz)) {
       result += "Buzz";
     }
     if (result === "") {
