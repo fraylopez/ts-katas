@@ -42,6 +42,18 @@ export class SimpleMarsRover {
   private moveDelta(x: number, y: number) {
     this.x = this.x + x;
     this.y = this.y + y;
+    if (this.x < 0) {
+      this.x = 9;
+    }
+    if (this.x > 9) {
+      this.x = 0;
+    }
+    if (this.y < 0) {
+      this.y = 9;
+    }
+    if (this.y > 9) {
+      this.y = 0;
+    }
   }
 
   private turnLeft() {

@@ -38,6 +38,11 @@ describe("SimpleMarsRover", () => {
     expect(rover.run('RM')).equals('1:0:E');
   });
 
+  it("should wrap around the world", () => {
+    const rover = new SimpleMarsRover();
+    expect(rover.run('LM')).equals('9:0:W');
+  });
+
 });
 
 
