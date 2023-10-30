@@ -25,19 +25,18 @@ export class SimpleMarsRover {
       this.move();
     }
   }
+
   private move() {
-    if (this.orientation === 'N') {
-      this.moveDelta(0, 1);
-    }
-    if (this.orientation === 'E') {
-      this.moveDelta(1, 0);
-    }
-    if (this.orientation === 'S') {
-      this.moveDelta(0, -1);
-    }
-    if (this.orientation === 'W') {
-      this.moveDelta(-1, 0);
-    }
+    const movements = {
+      'N': [0, 1],
+      'E': [1, 0],
+      'S': [0, -1],
+      'W': [-1, 0],
+    };
+    this.moveDelta(
+      movements[this.orientation][0],
+      movements[this.orientation][1]
+    );
   }
 
   private moveDelta(x: number, y: number) {
