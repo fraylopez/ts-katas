@@ -37,7 +37,7 @@ describe("FizzBuzz", () => {
     },
   ].forEach((testCase) => {
     it(`should output a partial fizzbuzz sequence for ${testCase.fizzBuzzOf}`, () => {
-      expect(FizzBuzz(testCase.fizzBuzzOf)).contains(testCase.expected);
+      expect(new FizzBuzz().run(testCase.fizzBuzzOf)).contains(testCase.expected);
     });
   });
 
@@ -45,18 +45,19 @@ describe("FizzBuzz", () => {
 
 });
 
-
-function FizzBuzz(n: number): string {
-  const isDivisibleBy = (n, d) => n % d === 0;
-  let result = "";
-  if (isDivisibleBy(n, 3)) {
-    result += "Fizz";
+class FizzBuzz {
+  run(n: number): string {
+    const isDivisibleBy = (n, d) => n % d === 0;
+    let result = "";
+    if (isDivisibleBy(n, 3)) {
+      result += "Fizz";
+    }
+    if (isDivisibleBy(n, 5)) {
+      result += "Buzz";
+    }
+    if (result === "") {
+      return n.toString();
+    }
+    return result;
   }
-  if (isDivisibleBy(n, 5)) {
-    result += "Buzz";
-  }
-  if (result === "") {
-    return n.toString();
-  }
-  return result;
 }
