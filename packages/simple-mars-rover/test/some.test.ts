@@ -21,6 +21,12 @@ describe("SimpleMarsRover", () => {
   it("should move forward", () => {
     expect(new SimpleMarsRover().run('M')).equals('0:1:N');
   });
+
+  it("should move forward twice", () => {
+    const rover = new SimpleMarsRover();
+    expect(rover.run('MM')).equals('0:2:N');
+  });
+
 });
 
 
@@ -32,8 +38,8 @@ class SimpleMarsRover {
     if (commands === 'L') {
       return '0:0:W';
     }
-    if (commands === 'M') {
-      return '0:1:N';
+    if (commands.indexOf('M') > -1) {
+      return `0:${commands.length}:N`;
     }
     return '0:0:N';
   }
