@@ -1,0 +1,28 @@
+@startuml
+
+class Hangman
+class Game
+class WordToGuess
+class Letter
+class Lives
+class Player
+
+class Guess
+class Restart
+note bottom of Restart
+    Restart the game
+end note
+
+Hangman *--> Game
+Game *--> WordToGuess
+Game *--> Player
+
+WordToGuess *-- "3..45" Letter
+Player --> Action : executes
+Player *--> "10..0" Lives
+Guess -up-|> Action
+Restart -up-|> Action
+Guess --> Letter
+
+
+@enduml
