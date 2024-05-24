@@ -21,10 +21,26 @@ describe("Hangman", () => {
     hangman.guess("b");
     hangman.getLives().should.be.equal(9);
   });
+
+  it("should lose a game", () => {
+    const hangman = new Hangman("dad");
+    hangman.guess("b");
+    hangman.guess("c");
+    hangman.guess("e");
+    hangman.guess("f");
+    hangman.guess("g");
+    hangman.guess("h");
+    hangman.guess("i");
+    hangman.guess("j");
+    hangman.guess("k");
+    hangman.guess("l");
+    hangman.isGameOver().should.be.true;
+  });
 });
 
 
 class Hangman {
+
   private word: string;
   private lives: number;
   constructor(word: string = "dad") {
@@ -41,6 +57,10 @@ class Hangman {
   }
   getLives() {
     return this.lives;
+  }
+
+  isGameOver() {
+    return this.lives === 0;
   }
 
 };
