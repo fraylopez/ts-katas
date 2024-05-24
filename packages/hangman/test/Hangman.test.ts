@@ -31,43 +31,20 @@ describe("Hangman", () => {
   });
 
   it("should win a game", () => {
-    const hangman = HangmanMother.new("dad", 10);
+    const hangman = HangmanMother.new();
     hangman.guess("d");
     hangman.guess("a");
-    hangman.isGameOver().should.be.true;
     hangman.isWin().should.be.true;
+  });
+
+  it("should lose a game", () => {
+    const hangman = HangmanMother.withOneLife("dad");
+    hangman.guess("b");
+    hangman.isGameOver().should.be.true;
+    hangman.isWin().should.be.false;
   });
 });
 
 
-export class Hangman {
-  private word: string;
-  private lives: number;
-  constructor(
-    word: string = "dad",
-    maxLives: number = 10
-  ) {
-    this.word = word;
-    this.lives = maxLives;
-  }
-  wordLength() {
-    return this.word.length;
-  }
-  guess(letter: string) {
-    if (!this.word.includes(letter)) {
-      this.lives--;
-    }
-  }
-  getLives() {
-    return this.lives;
-  }
-
-  isGameOver() {
-    return this.isWin() || this.lives === 0;
-  }
-
-  isWin() {
-    return true;
-  }
-};
+;
 

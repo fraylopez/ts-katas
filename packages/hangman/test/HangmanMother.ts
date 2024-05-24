@@ -1,4 +1,4 @@
-import { Hangman } from "./some.test";
+import { Hangman } from "../src/Hangman";
 
 
 export class HangmanMother {
@@ -7,8 +7,8 @@ export class HangmanMother {
     return new Hangman(word, maxLives);
   }
 
-  static withOneLife() {
-    return this.new("", 1);
+  static withOneLife(word: string = "dad") {
+    return this.new(word, 1);
   }
 
   static withWord(word: string) {
