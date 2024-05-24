@@ -1,12 +1,14 @@
 export class Hangman {
   private word: string;
   private lives: number;
+  private guessedLetters: string[];
   constructor(
     word: string = "dad",
     maxLives: number = 10
   ) {
     this.word = word;
     this.lives = maxLives;
+    this.guessedLetters = [];
   }
   wordLength() {
     return this.word.length;
@@ -14,6 +16,9 @@ export class Hangman {
   guess(letter: string) {
     if (!this.word.includes(letter)) {
       this.lives--;
+    }
+    else {
+      this.guessedLetters.push(letter);
     }
   }
   getLives() {
@@ -25,6 +30,7 @@ export class Hangman {
   }
 
   isWin() {
-    return this.lives > 0;
+    return this.word.split("")
+      .every(letter => this.guessedLetters.includes(letter));
   }
 }

@@ -43,4 +43,10 @@ describe("Hangman", () => {
     hangman.isGameOver().should.be.true;
     hangman.isWin().should.be.false;
   });
+
+  it("should not win a game until guessing all letters", () => {
+    const hangman = HangmanMother.withOneLife("bad");
+    hangman.guess("d");
+    hangman.isWin().should.be.false;
+  });
 });
