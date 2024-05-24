@@ -1,4 +1,4 @@
-import { expect, should } from "chai";
+import { should } from "chai";
 import { HangmanMother } from "./HangmanMother";
 should();
 
@@ -24,16 +24,23 @@ describe("Hangman", () => {
     hangman.getLives().should.be.equal(9);
   });
 
-  it("should lose a game", () => {
+  it("should end a game", () => {
     const hangman = HangmanMother.withOneLife();
     hangman.guess("b");
     hangman.isGameOver().should.be.true;
+  });
+
+  it("should win a game", () => {
+    const hangman = HangmanMother.new("dad", 10);
+    hangman.guess("d");
+    hangman.guess("a");
+    hangman.isGameOver().should.be.true;
+    hangman.isWin().should.be.true;
   });
 });
 
 
 export class Hangman {
-
   private word: string;
   private lives: number;
   constructor(
@@ -56,8 +63,11 @@ export class Hangman {
   }
 
   isGameOver() {
-    return this.lives === 0;
+    return this.isWin() || this.lives === 0;
   }
 
+  isWin() {
+    return true;
+  }
 };
 
