@@ -44,6 +44,3 @@ describe("Hangman", () => {
     hangman.isWin().should.be.false;
   });
 });
-
-
-
