@@ -1,12 +1,14 @@
+import { Word } from "./Word";
+
 export class Hangman {
-  private word: string;
+  private word: Word;
   private lives: number;
   private guessedLetters: string[];
   constructor(
     word: string = "dad",
     maxLives: number = 10
   ) {
-    this.word = word;
+    this.word = new Word(word);
     this.lives = maxLives;
     this.guessedLetters = [];
   }
@@ -30,7 +32,6 @@ export class Hangman {
   }
 
   isWin() {
-    return this.word.split("")
-      .every(letter => this.guessedLetters.includes(letter));
+    return this.word.isGuessed(this.guessedLetters);
   }
 }
