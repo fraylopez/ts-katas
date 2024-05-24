@@ -1,51 +1,47 @@
 import { expect, should } from "chai";
+import { HangmanMother } from "./HangmanMother";
 should();
+
 describe("Hangman", () => {
 
   it("should have a word of length 3", () => {
-    new Hangman().wordLength().should.be.equal(3);
+    HangmanMother.new().wordLength().should.be.equal(3);
   });
 
   it("should have a word of length 4", () => {
-    new Hangman("moon").wordLength().should.be.equal(4);
+    HangmanMother.withWord("moon").wordLength().should.be.equal(4);
   });
 
   it("should guess a letter", () => {
-    const hangman = new Hangman("dad");
+    const hangman = HangmanMother.new();
     hangman.guess("a");
     hangman.getLives().should.be.equal(10);
   });
 
   it("should fail a guess", () => {
-    const hangman = new Hangman("dad");
+    const hangman = HangmanMother.new();
     hangman.guess("b");
     hangman.getLives().should.be.equal(9);
   });
 
   it("should lose a game", () => {
-    const hangman = new Hangman("dad");
+    const hangman = HangmanMother.withOneLife();
     hangman.guess("b");
-    hangman.guess("c");
-    hangman.guess("e");
-    hangman.guess("f");
-    hangman.guess("g");
-    hangman.guess("h");
-    hangman.guess("i");
-    hangman.guess("j");
-    hangman.guess("k");
-    hangman.guess("l");
     hangman.isGameOver().should.be.true;
   });
 });
 
 
-class Hangman {
+export class Hangman {
 
   private word: string;
   private lives: number;
-  constructor(word: string = "dad") {
+  constructor(
+    word: string = "dad",
+    maxLives: number = 10
+  ) {
     this.word = word;
-    this.lives = 10;
+    this.lives = maxLives;
   }
   wordLength() {
     return this.word.length;
@@ -64,3 +60,4 @@ class Hangman {
   }
 
 };
+
