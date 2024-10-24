@@ -37,3 +37,8 @@ it("should load the txt file", () => {
   );
 });
 
+it("should attempt to send an email", () => {
+  BirthdayService.main("some args");
+  assert.calledWith(loggerStub, "Sending email");
+});
+

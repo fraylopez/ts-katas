@@ -28,6 +28,7 @@ export class BirthdayService {
 
     private sendTheMessage(smtpHost: string, smtpPort: number, sender: string,
         subject: string, body: string, recipient: string) {
+        Logger.log("Sending email");
         // Create a mail session
         const transport = nodemailer.createTransport({
             host: smtpHost,
