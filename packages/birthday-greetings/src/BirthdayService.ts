@@ -4,6 +4,7 @@ import * as fs from "fs";
 import * as nodemailer from "nodemailer";
 import { MailOptions } from "nodemailer/lib/smtp-transport";
 import { EmailNotSentError } from "./EmailNotSentError";
+import { Logger } from "./Logger";
 
 export class BirthdayService {
 
@@ -52,6 +53,7 @@ export class BirthdayService {
     }
 
     static main(args: string) {
+        Logger.log("Starting the application");
         const service = new BirthdayService();
         try {
             service.sendGreetings("employee_data.txt",
