@@ -1,10 +1,7 @@
-import { expect, should } from "chai";
 import * as sinon from "sinon";
+import { assert } from "sinon";
 import { BirthdayService } from "../src/birthdayService";
 import { Logger } from "../src/Logger";
-
-should();
-
 
 let sandbox: sinon.SinonSandbox;
 let loggerStub: sinon.SinonStub;
@@ -15,13 +12,22 @@ before(() => {
 });
 
 afterEach(() => {
-  sandbox.restore();
+  sandbox.reset();
 });
 
 it("should start the app", () => {
   BirthdayService.main("some args");
-  loggerStub.calledWith("Starting the application").should.be.true;
+  assert.calledWith(loggerStub, "Starting the application");
 });
 
-
+it("should load the txt file", () => {
+  BirthdayService.main("some args");
+  assert.calledWith(
+    loggerStub,
+    "Read data from file",
+    sinon.match(
+      (data: string) => data?.includes("Doe, John, 1982/10/08")
+    )
+  );
+});
 

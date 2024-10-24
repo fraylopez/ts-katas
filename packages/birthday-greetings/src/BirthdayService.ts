@@ -10,6 +10,7 @@ export class BirthdayService {
 
     public sendGreetings(fileName: string, ourDate: OurDate, smtpHost: string, smtpPort: number) {
         const data = fs.readFileSync(fileName, { encoding: 'utf8' });
+        Logger.log("Read data from file", data);
         data.split(/\r?\n/).forEach((str: string) => {
             let employeeData = str.split(", ");
             const employee = new Employee(employeeData[1], employeeData[0],
