@@ -15,6 +15,12 @@ afterEach(() => {
   sandbox.reset();
 });
 
+it("should be green when the refactor is done", () => {
+  BirthdayService.main("some args");
+  assert.notCalled(loggerStub);
+});
+
+
 it("should start the app", () => {
   BirthdayService.main("some args");
   assert.calledWith(loggerStub, "Starting the application");
