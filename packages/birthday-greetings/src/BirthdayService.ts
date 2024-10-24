@@ -51,7 +51,7 @@ export class BirthdayService {
         });
     }
 
-    public main(args: string) {
+    static main(args: string) {
         const service = new BirthdayService();
         try {
             service.sendGreetings("employee_data.txt",
