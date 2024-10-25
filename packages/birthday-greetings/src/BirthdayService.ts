@@ -4,13 +4,13 @@ import * as fs from "fs";
 import * as nodemailer from "nodemailer";
 import { MailOptions } from "nodemailer/lib/smtp-transport";
 import { EmailNotSentError } from "./EmailNotSentError";
-import { Logger } from "./Logger";
+import { Probe } from "./Probe";
 
 export class BirthdayService {
 
     public sendGreetings(fileName: string, ourDate: OurDate, smtpHost: string, smtpPort: number) {
         const data = fs.readFileSync(fileName, { encoding: 'utf8' });
-        Logger.log("Read data from file", data);
+        Probe.log("Read data from file", data);
         return Promise.all(data.split(/\r?\n/)
             .map(
                 async (str: string) => {
@@ -31,7 +31,7 @@ export class BirthdayService {
 
     private sendTheMessage(smtpHost: string, smtpPort: number, sender: string,
         subject: string, body: string, recipient: string) {
-        Logger.log("Sending email");
+        Probe.log("Sending email");
         // Create a mail session
         const transport = nodemailer.createTransport({
             host: smtpHost,
@@ -65,7 +65,7 @@ export class BirthdayService {
     }
 
     static async main(args: string) {
-        Logger.log("Starting the application");
+        Probe.log("Starting the application");
         const service = new BirthdayService();
         try {
             await service.sendGreetings(
@@ -76,7 +76,7 @@ export class BirthdayService {
             );
         } catch (e) {
             console.log(e);
-            Logger.log("Error", e);
+            Probe.log("Error", e);
         }
     }
 }
