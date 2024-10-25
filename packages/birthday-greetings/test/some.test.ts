@@ -42,3 +42,8 @@ it("should attempt to send an email", () => {
   assert.calledWith(loggerStub, "Sending email");
 });
 
+it("should not fail", async () => {
+  await BirthdayService.main("some args");
+  assert.neverCalledWith(loggerStub, "Error");
+})
+

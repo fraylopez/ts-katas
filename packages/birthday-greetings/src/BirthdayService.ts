@@ -11,19 +11,22 @@ export class BirthdayService {
     public sendGreetings(fileName: string, ourDate: OurDate, smtpHost: string, smtpPort: number) {
         const data = fs.readFileSync(fileName, { encoding: 'utf8' });
         Logger.log("Read data from file", data);
-        data.split(/\r?\n/).forEach((str: string) => {
-            let employeeData = str.split(", ");
-            const employee = new Employee(employeeData[1], employeeData[0],
-                employeeData[2], employeeData[3]);
-            if (employee.isBirthday(ourDate)) {
-                const recipient = employee.getEmail();
-                const body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
-                    employee.getFirstName());
-                const subject = "Happy Birthday!";
-                this.sendTheMessage(smtpHost, smtpPort, "sender@here.com", subject,
-                    body, recipient);
-            }
-        });
+        return Promise.all(data.split(/\r?\n/)
+            .map(
+                async (str: string) => {
+                    let employeeData = str.split(", ");
+                    const employee = new Employee(employeeData[1], employeeData[0],
+                        employeeData[2], employeeData[3]);
+                    if (employee.isBirthday(ourDate)) {
+                        const recipient = employee.getEmail();
+                        const body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
+                            employee.getFirstName());
+                        const subject = "Happy Birthday!";
+                        await this.sendTheMessage(smtpHost, smtpPort, "sender@here.com", subject,
+                            body, recipient);
+                    }
+                })
+        );
     }
 
     private sendTheMessage(smtpHost: string, smtpPort: number, sender: string,
@@ -44,24 +47,36 @@ export class BirthdayService {
         };
 
         // Send the message
-        this.sendMessage(msg, transport);
+        return this.sendMessage(msg, transport);
     }
 
     // made protected for testing :-(
     protected sendMessage(msg: MailOptions, transport: nodemailer.Transporter) {
-        transport.sendMail(msg, (err: Error | null) => {
-            if (err) throw new EmailNotSentError(err);
+        return new Promise<void>((resolve, reject) => {
+            transport.sendMail(msg, (err: Error | null) => {
+                if (err) {
+                    reject(new EmailNotSentError(err));
+                }
+                else {
+                    resolve();
+                }
+            });
         });
     }
 
-    static main(args: string) {
+    static async main(args: string) {
         Logger.log("Starting the application");
         const service = new BirthdayService();
         try {
-            service.sendGreetings("employee_data.txt",
-                new OurDate("2008/10/08"), "localhost", 25);
+            await service.sendGreetings(
+                "employee_data.txt",
+                new OurDate("2008/10/08"),
+                "localhost",
+                25
+            );
         } catch (e) {
             console.log(e);
+            Logger.log("Error", e);
         }
     }
 }
