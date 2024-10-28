@@ -51,17 +51,14 @@ export class BirthdayService {
     }
 
     // made protected for testing :-(
-    protected sendMessage(msg: MailOptions, transport: nodemailer.Transporter) {
-        return new Promise<void>((resolve, reject) => {
-            transport.sendMail(msg, (err: Error | null) => {
-                if (err) {
-                    reject(new EmailNotSentError(err));
-                }
-                else {
-                    resolve();
-                }
-            });
-        });
+    protected async sendMessage(msg: MailOptions, transport: nodemailer.Transporter) {
+        try {
+            await transport.sendMail(msg);
+            Probe.log("Email sent");
+        } catch (e) {
+            Probe.log("Error sending email", e);
+            throw new EmailNotSentError(e as Error);
+        }
     }
 
     static async main(args: string) {

@@ -1,14 +1,15 @@
 import * as sinon from "sinon";
 import { assert } from "sinon";
 import { BirthdayService } from "../src/birthdayService";
-import { Logger } from "../src/Logger";
+import { Probe } from "../src/Probe";
+import * as  Mail from "nodemailer/lib/mailer";
 
 let sandbox: sinon.SinonSandbox;
 let loggerStub: sinon.SinonStub;
 
 before(() => {
   sandbox = sinon.createSandbox();
-  loggerStub = sandbox.stub(Logger, "log");
+  loggerStub = sandbox.stub(Probe, "log");
 });
 
 afterEach(() => {
@@ -42,8 +43,13 @@ it("should attempt to send an email", () => {
   assert.calledWith(loggerStub, "Sending email");
 });
 
-it("should not fail", async () => {
+it("should send the email", async () => {
+  mockMailService();
   await BirthdayService.main("some args");
-  assert.neverCalledWith(loggerStub, "Error");
-})
+  assert.calledWith(loggerStub, "Email sent");
+});
+
+function mockMailService() {
+  sandbox.stub(Mail.prototype, "sendMail").resolves();
+}
 
